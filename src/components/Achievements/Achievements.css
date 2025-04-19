@@ -1,0 +1,573 @@
+.achievements {
+  padding: 100px 0;
+  background-color: var(--bg-color);
+  position: relative;
+}
+
+.achievements::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(0, 128, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(128, 0, 255, 0.03) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.achievements-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h2 span {
+  color: var(--primary);
+}
+
+.section-title p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.achievements-content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Achievement Showcase */
+.achievements-showcase {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 30px;
+  min-height: 500px;
+}
+
+.achievement-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+}
+
+.achievement-tab {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(10, 25, 47, 0.3);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-left: 3px solid transparent;
+}
+
+.achievement-tab:hover {
+  background: rgba(10, 25, 47, 0.5);
+  transform: translateX(5px);
+}
+
+.achievement-tab.active {
+  background: rgba(10, 25, 47, 0.6);
+  border-left-color: var(--tab-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 1.5rem;
+  color: var(--tab-color);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.achievement-tab.active .tab-icon {
+  background: var(--tab-color);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.tab-info {
+  flex-grow: 1;
+}
+
+.tab-info h3 {
+  font-size: 1.1rem;
+  margin: 0 0 5px 0;
+  transition: color 0.3s ease;
+}
+
+.tab-info p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+.achievement-tab.active .tab-info h3 {
+  color: var(--tab-color);
+}
+
+.tab-arrow {
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  color: var(--tab-color);
+}
+
+.achievement-tab.active .tab-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Achievement Display Card */
+.achievement-display {
+  position: relative;
+}
+
+.achievement-card {
+  background: rgba(10, 25, 47, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background-color: var(--highlight-color);
+  opacity: 0.8;
+}
+
+.achievement-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.achievement-icon-large {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--highlight-color);
+  color: white;
+  font-size: 2rem;
+  flex-shrink: 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.achievement-title-group h2 {
+  font-size: 1.8rem;
+  margin: 0 0 5px 0;
+  color: var(--text-primary);
+}
+
+.achievement-subtitle {
+  font-size: 1rem;
+  color: var(--highlight-color);
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.achievement-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.achievement-image:hover img {
+  transform: scale(1.05);
+}
+
+.achievement-description {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.achievement-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.stat-item:hover {
+  background: rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: var(--highlight-color);
+  color: white;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.stat-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  opacity: 0.9;
+}
+
+.achievement-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--highlight-color);
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-top: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.achievement-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Badges Section */
+.achievements-badges {
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.badges-title {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.badges-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+.badges-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 25px;
+  width: 200px;
+  background: rgba(10, 25, 47, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.badge:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #9b59b6);
+  color: white;
+  font-size: 1.8rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.badge h4 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.badge p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .achievements-showcase {
+    grid-template-columns: 1fr;
+  }
+  
+  .achievement-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 15px;
+  }
+  
+  .achievement-tab {
+    flex-direction: column;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    padding: 15px 10px;
+    flex-shrink: 0;
+  }
+  
+  .tab-info h3 {
+    font-size: 0.9rem;
+  }
+  
+  .tab-info p {
+    font-size: 0.8rem;
+  }
+  
+  .tab-arrow {
+    display: none;
+  }
+  
+  .achievement-tab.active {
+    border-left-color: transparent;
+    border-bottom: 3px solid var(--tab-color);
+  }
+  
+  .achievement-tab:hover {
+    transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 768px) {
+  .achievements {
+    padding: 80px 0;
+  }
+  
+  .section-title h2 {
+    font-size: 2rem;
+  }
+  
+  .achievements-badges {
+    padding-top: 20px;
+  }
+  
+  .badges-container {
+    gap: 20px;
+  }
+  
+  .badge {
+    width: 160px;
+    padding: 20px 15px;
+  }
+  
+  .badge-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+  
+  .achievement-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .achievement-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .achievement-title-group h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .achievements {
+    padding: 60px 0;
+  }
+  
+  .achievements-showcase {
+    min-height: auto;
+  }
+  
+  .achievement-tab {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .achievement-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .badges-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .badge {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+.platform-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.platform-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.platform-icon {
+  margin-right: 0.5rem;
+  color: var(--accent-color);
+}
+
+.platform-links-container {
+  position: relative;
+}
+
+.platform-dropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background-color: rgba(30, 35, 40, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  z-index: 10;
+  min-width: 150px;
+  margin-bottom: 5px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.platform-link {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.platform-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--accent-color);
+}
+
+.platform-link-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+} 

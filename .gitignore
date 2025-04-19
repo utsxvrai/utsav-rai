@@ -1,0 +1,67 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+
+# editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# cache
+.eslintcache
+.npm
+.cache
+.parcel-cache
+
+# local development SSL
+*.pem
+
+# debugging
+.chrome
+
+# package manager locks (if using npm, comment out yarn.lock line)
+# yarn.lock
+package-lock.json
+
+# Firebase
+.firebase/
+.firebaserc
+firebase-debug.log*
+
+# cypress
+cypress/videos
+cypress/screenshots
+
+# storybook
+storybook-static
+
+# Deployment files
+.netlify
+.vercel 
