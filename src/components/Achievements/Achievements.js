@@ -13,7 +13,6 @@ const Achievements = () => {
       color: "#FFD700",
       subtitle: "College Coding Competition",
       text: "Demonstrated problem-solving and coding skills by winning Kodethon three times, competing against 100+ skilled programmers.",
-      image: "/assets/achievements/kodethon.jpg",
       link: "#" 
     },
     { 
@@ -21,7 +20,6 @@ const Achievements = () => {
       title: "Competitive Programming",
       color: "#3498db",
       subtitle: "Multiple Platforms",
-      image: "/assets/achievements/competitive.jpg",
       text: "Achieved significant ratings on major competitive programming platforms:",
       stats: [
         { name: "LeetCode", icon: <SiLeetcode />, value: "Knight 1856", link: "https://leetcode.com/Kalki07/" },
@@ -35,7 +33,6 @@ const Achievements = () => {
       title: "Freshmen Hacks Hackathon",
       color: "#9b59b6",
       subtitle: "1st Place",
-      image: "/assets/achievements/hackathon.jpg",
       text: "Led a 4-member team to develop the project Present Sir, securing 1st place for innovation and technical proficiency.",
       link: "https://devfolio.co/projects/present-sir-75e9" 
     },
@@ -44,7 +41,6 @@ const Achievements = () => {
       title: "Postman API Expert",
       color: "#FF6C37",
       subtitle: "Professional Certification",
-      image: "/assets/achievements/postman.jpg",
       text: "Awarded for demonstrating proficiency with APIs and Postman by completing foundational tasks and passing all tests with a submitted Postman Collection.",
       link: "https://badgr.com/public/assertions/CiujQeB7R9SpP9fYdEiK-w"
     },
@@ -53,7 +49,6 @@ const Achievements = () => {
       title: "Hacktoberfest Contributor",
       color: "#21262d",
       subtitle: "Open Source Contribution",
-      image: "/assets/achievements/hacktoberfest.jpg",
       text: "Participated in Hacktoberfest 2023, contributing to open source projects and promoting collaborative development.",
       link: "https://www.holopin.io/@utsxvrai#"
     }
@@ -98,12 +93,6 @@ const Achievements = () => {
                     <span className="achievement-subtitle">{achievements[activeAchievement].subtitle}</span>
                   </div>
                 </div>
-                
-                {achievements[activeAchievement].image && (
-                  <div className="achievement-image">
-                    <img src={achievements[activeAchievement].image} alt={achievements[activeAchievement].title} />
-                  </div>
-                )}
                 
                 <div className="achievement-description">
                   <p>{achievements[activeAchievement].text}</p>

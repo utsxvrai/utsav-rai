@@ -1,19 +1,135 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Hero.css';
 import { FaDownload, FaRss, FaBlog } from 'react-icons/fa';
 
 const Hero = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroImagePath = "/assets/WhatsApp Image 2025-03-17 at 16.57.16_e3b09e99 (1).jpg";
+  const imageRef = useRef(null);
+  const particlesRef = useRef(null);
 
-  // Preload the hero image
+  // Preload the hero image with a forced delay to show loading animation
   useEffect(() => {
     const img = new Image();
     img.src = heroImagePath;
+    
     img.onload = () => {
-      setImageLoaded(true);
+      // Add a minimum delay to ensure loading animation is visible
+      setTimeout(() => {
+        setImageLoaded(true);
+      }, 1500); // 1.5 second delay
+    };
+    
+    // Set a timeout in case the image loads from cache immediately
+    setTimeout(() => {
+      if (!imageLoaded) {
+        img.src = heroImagePath + '?t=' + new Date().getTime();
+      }
+    }, 100);
+  }, []);
+
+  // Handle the 3D tilt effect
+  useEffect(() => {
+    if (!imageRef.current) return;
+
+    const handleMouseMove = (e) => {
+      const containerRect = imageRef.current.getBoundingClientRect();
+      const x = e.clientX - containerRect.left;
+      const y = e.clientY - containerRect.top;
+      
+      const centerX = containerRect.width / 2;
+      const centerY = containerRect.height / 2;
+      
+      const percentX = (x - centerX) / centerX;
+      const percentY = (y - centerY) / centerY;
+      
+      setMousePosition({ x: percentX, y: percentY });
+    };
+
+    const handleMouseLeave = () => {
+      setMousePosition({ x: 0, y: 0 });
+    };
+
+    imageRef.current.addEventListener('mousemove', handleMouseMove);
+    imageRef.current.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      if (imageRef.current) {
+        imageRef.current.removeEventListener('mousemove', handleMouseMove);
+        imageRef.current.removeEventListener('mouseleave', handleMouseLeave);
+      }
     };
   }, []);
+
+  // Create and animate particles
+  useEffect(() => {
+    if (!particlesRef.current) return;
+    
+    const canvas = particlesRef.current;
+    const ctx = canvas.getContext('2d');
+    
+    const particles = [];
+    const particleCount = 50;
+    
+    // Set canvas size
+    const setCanvasSize = () => {
+      if (canvas) {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+    };
+    
+    // Create particles
+    const createParticles = () => {
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 3 + 1,
+          color: `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(Math.random() * 100 + 155)}, 255, ${Math.random() * 0.6 + 0.2})`,
+          speedX: Math.random() * 1 - 0.5,
+          speedY: Math.random() * 1 - 0.5
+        });
+      }
+    };
+    
+    // Animate particles
+    const animateParticles = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
+        
+        // Update position
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+        
+        // Boundary checks
+        if (particle.x < 0 || particle.x > canvas.width) {
+          particle.speedX *= -1;
+        }
+        
+        if (particle.y < 0 || particle.y > canvas.height) {
+          particle.speedY *= -1;
+        }
+      });
+      
+      requestAnimationFrame(animateParticles);
+    };
+    
+    setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
+    createParticles();
+    animateParticles();
+    
+    return () => {
+      window.removeEventListener('resize', setCanvasSize);
+    };
+  }, [imageLoaded]);
 
   return (
     <section id="hero" className="hero">
@@ -44,13 +160,44 @@ const Hero = () => {
         </div>
         
         <div className="hero-image-wrapper">
-          <div className={`hero-image-frame ${imageLoaded ? 'loaded' : ''}`}>
+          <canvas ref={particlesRef} className="particles-canvas"></canvas>
+          <div 
+            ref={imageRef}
+            className={`hero-image-frame ${imageLoaded ? 'loaded' : ''}`}
+            style={{
+              transform: `perspective(1000px) rotateY(${mousePosition.x * 15}deg) rotateX(${mousePosition.y * -15}deg)`,
+              transition: mousePosition.x === 0 && mousePosition.y === 0 ? 'transform 0.5s ease' : 'none'
+            }}
+          >
             {/* Placeholder while image loads */}
             {!imageLoaded && (
               <div className="image-placeholder">
                 <div className="placeholder-spinner"></div>
+                <div className="loading-text">
+                  <span>L</span>
+                  <span>O</span>
+                  <span>A</span>
+                  <span>D</span>
+                  <span>I</span>
+                  <span>N</span>
+                  <span>G</span>
+                </div>
+                <div className="loading-progress-container">
+                  <div className="loading-progress-bar"></div>
+                </div>
+                <div className="data-scan">
+                  <div className="scan-line"></div>
+                  <div className="scan-text">Scanning profile data...</div>
+                </div>
               </div>
             )}
+            <div className="image-glow"></div>
+            <div className="image-effects">
+              <div className="corner-effect top-left"></div>
+              <div className="corner-effect top-right"></div>
+              <div className="corner-effect bottom-left"></div>
+              <div className="corner-effect bottom-right"></div>
+            </div>
             <img 
               src={heroImagePath} 
               alt="Utsav Rai" 
@@ -59,6 +206,12 @@ const Hero = () => {
               loading="eager"
               fetchpriority="high"
             />
+            <div className="image-overlay"></div>
+          </div>
+          <div className="tech-indicators">
+            <div className="tech-dot"></div>
+            <div className="tech-dot"></div>
+            <div className="tech-dot"></div>
           </div>
         </div>
       </div>

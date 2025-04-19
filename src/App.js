@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -8,18 +8,31 @@ import Projects from './components/Projects/Projects';
 import Achievements from './components/Achievements/Achievements';
 import Contact from './components/Contact/Contact';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import LoadingScreen from './components/LoadingScreen/LoadingScreen';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  const handleLoadingComplete = () => {
+    setLoading(false);
+  };
+
   return (
     <div className="App">
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Achievements />
-      <Contact />
-      <ScrollToTop />
+      {loading ? (
+        <LoadingScreen onComplete={handleLoadingComplete} />
+      ) : (
+        <>
+          <Navbar />
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Achievements />
+          <Contact />
+          <ScrollToTop />
+        </>
+      )}
     </div>
   );
 }

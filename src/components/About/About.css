@@ -80,6 +80,7 @@
   line-height: 1.8;
   margin-bottom: 8px;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .prompt {
@@ -90,6 +91,8 @@
 
 .response {
   color: #f1f1f1;
+  display: inline-block;
+  width: 100%;
 }
 
 /* About Text Cards Styling */
@@ -339,7 +342,7 @@
   
   .terminal-body {
     padding: 15px;
-    font-size: 12px;
+    font-size: 13px;
   }
   
   .arch-layer {
@@ -356,15 +359,139 @@
     padding: 10px 20px;
     font-size: 0.9rem;
   }
+  
+  .line {
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
 }
 
 @media screen and (max-width: 576px) {
-  .architecture-diagram {
-    grid-template-columns: 1fr;
+  /* Add better padding to the entire about section */
+  .about {
+    padding: 60px 8px;
   }
   
+  /* Adjust section title for mobile */
+  .section-title {
+    margin-bottom: 2rem;
+    padding: 0 10px;
+  }
+
+  /* Improve terminal window spacing */
+  .terminal-window {
+    margin: 0 8px;
+    width: calc(100% - 16px);
+  }
+
+  /* Fix card header alignment */
+  .card-header {
+    flex-wrap: wrap;
+  }
+
+  /* Adjust the backend icon spacing */
+  .backend-icon {
+    font-size: 1.8rem;
+    margin-right: 0.8rem;
+  }
+
+  /* Make card headings fit better */
+  .about-me-card h3 {
+    font-size: 1.3rem;
+  }
+
+  /* Adjust card paragraph text */
+  .about-me-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Improve architecture diagram container spacing */
+  .backend-architecture {
+    margin: 0 8px;
+    width: calc(100% - 16px);
+  }
+
+  /* Fix architecture diagram spacing */
+  .architecture-diagram {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 0 5px;
+    width: calc(100% - 10px);
+  }
+  
+  /* Ensure the architecture layers don't touch edges */
+  .arch-layer {
+    padding: 12px 10px;
+    margin-bottom: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    width: calc(100% - 4px);
+  }
+
+  /* Fix the architecture nodes spacing */
   .arch-node {
-    padding: 10px;
+    padding: 10px 8px;
     font-size: 0.8rem;
+    margin-bottom: 8px;
+    border-left-width: 2px;
+  }
+  
+  .about-me-card {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+    border-left: none;
+    border-top: 3px solid var(--accent-color);
+    margin-left: 8px;
+    margin-right: 8px;
+    width: calc(100% - 16px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .terminal-body {
+    padding: 15px 10px;
+    font-size: 13px;
+  }
+  
+  .line {
+    line-height: 1.6;
+    margin-bottom: 10px;
+    white-space: normal;
+  }
+  
+  .about-social {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .social-btn {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+  
+  .about-text {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 5px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Add padding to the container on mobile */
+  .about-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* Add some space between sections */
+  .about-header {
+    margin-bottom: 2rem;
+  }
+  
+  .backend-architecture {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 }
