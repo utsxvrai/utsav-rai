@@ -156,7 +156,7 @@ const Hero = () => {
           </div>
           
           <div className="hero-cta">
-            <a href="/assets/cv/UtsavRaiCVV3.pdf" className="btn download-btn" download>
+            <a href="/assets/cv/UtsavRai82.pdf" className="btn download-btn" download>
               <FaDownload className="download-icon" /> Download CV
             </a>
             <a href="https://utsav-rai-blog.vercel.app" target="_blank" rel="noopener noreferrer" className="btn blog-btn">

@@ -60,7 +60,7 @@ const Notification = ({
         // Fallback notifications
         setNotifications([
           { id: 'g1', type: 'github', message: 'Pushed to utsavrai/portfolio', time: '2 hours ago' },
-          { id: 't1', type: 'twitter', message: 'Just shared a new blog post about backend development', time: '4 hours ago' }
+          { id: 't1', type: 'twitter', message: 'I will fix the contact seciton soon!', time: '4 hours ago' }
         ]);
       } finally {
         setLoading(false);
