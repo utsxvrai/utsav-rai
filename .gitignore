@@ -65,3 +65,18 @@ storybook-static
 # Deployment files
 .netlify
 .vercel 
+
+# Personal CV files
+/public/assets/cv/
+/cv/
+/CV/
+
+# Projects directory
+/projects/
+/public/assets/projects/
+/src/assets/projects/
+
+# Any other confidential files
+/confidential/ 
+
+
