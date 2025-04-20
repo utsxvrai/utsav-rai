@@ -1,7 +1,7 @@
 import React from 'react';
 import './About.css';
 import { FaGithub, FaLinkedin, FaCode, FaServer, FaDatabase, FaNodeJs, FaCloud, FaAws } from 'react-icons/fa';
-import { SiExpress, SiMongodb, SiPostgresql, SiDocker, SiGraphql, SiRedis, SiNginx, SiTypescript, SiPython, SiSocketdotio, SiRabbitmq, SiMicrosoftazure } from 'react-icons/si';
+import { SiExpress, SiMongodb, SiPostgresql, SiDocker, SiGraphql, SiRedis, SiNginx, SiJavascript, SiGo, SiSocketdotio, SiRabbitmq, SiMicrosoftazure } from 'react-icons/si';
 
 const About = () => {
   return (
@@ -75,16 +75,18 @@ const About = () => {
               <div className="arch-layer client-layer">
                 <div className="arch-label">Client Layer</div>
                 <div className="arch-node">
-                  <SiGraphql /> GraphQL APIs
+                <FaServer /> RESTful Services
+                  
                 </div>
                 <div className="arch-node">
-                  <FaServer /> RESTful Services
+                <SiGraphql /> GraphQL APIs
                 </div>
                 <div className="arch-node">
-                  <SiSocketdotio /> WebSockets
+                <FaCode /> API Gateway
+                  
                 </div>
                 <div className="arch-node">
-                  <FaCode /> API Gateway
+                <SiSocketdotio /> WebSockets
                 </div>
               </div>
 
@@ -97,10 +99,10 @@ const About = () => {
                   <SiExpress /> Express.js
                 </div>
                 <div className="arch-node">
-                  <SiTypescript /> TypeScript
+                  <SiJavascript /> Javascript
                 </div>
                 <div className="arch-node">
-                  <SiPython /> Python
+                  <SiGo /> GoLang
                 </div>
               </div>
 

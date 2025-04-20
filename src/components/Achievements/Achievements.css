@@ -593,4 +593,176 @@
   font-size: 1.2rem;
   display: flex;
   align-items: center;
+}
+
+.achievement-custom-content {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.achievement-custom-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-custom-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.achievement-custom-image:hover img {
+  transform: scale(1.02);
+}
+
+.holopin-badges {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: rgba(30, 30, 40, 0.3);
+  padding: 10px;
+}
+
+.holopin-img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  max-width: 100%;
+  display: block;
+}
+
+.postman-badge {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background: rgba(30, 30, 40, 0.3);
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .achievement-custom-content {
+    margin-top: 15px;
+  }
+  
+  .postman-badge iframe {
+    width: 100%;
+    max-width: 330px;
+  }
+}
+
+@media (max-width: 576px) {
+  .achievement-custom-content {
+    margin-top: 10px;
+  }
+  
+  .postman-badge iframe {
+    width: 100%;
+    max-width: 280px;
+    height: 160px;
+  }
+}
+
+.postman-badge-card {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  color: #333;
+}
+
+.badge-card-content {
+  display: flex;
+  padding: 15px;
+}
+
+.badge-card-image {
+  flex: 0 0 100px;
+  padding-right: 15px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.badge-card-image img {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.badge-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.badge-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  color: #0077cc;
+}
+
+.badge-card-issuer {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0 0 5px 0;
+  color: #444;
+}
+
+.badge-card-desc {
+  font-size: 0.85rem;
+  margin: 0 0 5px 0;
+  color: #666;
+}
+
+.badge-card-recipient {
+  font-size: 0.8rem;
+  margin: 2px 0;
+  color: #777;
+}
+
+.badge-card-date {
+  font-size: 0.8rem;
+  margin: 2px 0;
+  color: #888;
+}
+
+@media (max-width: 576px) {
+  .badge-card-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+  }
+  
+  .badge-card-image {
+    padding-right: 0;
+    padding-bottom: 10px;
+  }
+  
+  .badge-card-info {
+    text-align: center;
+  }
+  
+  .badge-card-title {
+    font-size: 0.95rem;
+  }
+  
+  .badge-card-issuer,
+  .badge-card-desc,
+  .badge-card-recipient,
+  .badge-card-date {
+    font-size: 0.8rem;
+  }
 } 

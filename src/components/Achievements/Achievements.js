@@ -13,7 +13,12 @@ const Achievements = () => {
       color: "#FFD700",
       subtitle: "College Coding Competition",
       text: "Demonstrated problem-solving and coding skills by winning Kodethon three times, competing against 100+ skilled programmers.",
-      link: "#" 
+      link: "#",
+      customContent: (
+        <div className="achievement-custom-image">
+          <img src="/assets/projects/kodethon.png" alt="Kodethon Winner" />
+        </div>
+      )
     },
     { 
       icon: <FaCode />, 
@@ -34,7 +39,12 @@ const Achievements = () => {
       color: "#9b59b6",
       subtitle: "1st Place",
       text: "Led a 4-member team to develop the project Present Sir, securing 1st place for innovation and technical proficiency.",
-      link: "https://devfolio.co/projects/present-sir-75e9" 
+      link: "https://devfolio.co/projects/present-sir-75e9",
+      customContent: (
+        <div className="achievement-custom-image">
+          <img src="/assets/projects/freshmen.png" alt="Freshmen Hacks Hackathon Winner" />
+        </div>
+      )
     },
     {
       icon: <SiPostman />,
@@ -42,7 +52,23 @@ const Achievements = () => {
       color: "#FF6C37",
       subtitle: "Professional Certification",
       text: "Awarded for demonstrating proficiency with APIs and Postman by completing foundational tasks and passing all tests with a submitted Postman Collection.",
-      link: "https://badgr.com/public/assertions/CiujQeB7R9SpP9fYdEiK-w"
+      link: "https://badgr.com/public/assertions/CiujQeB7R9SpP9fYdEiK-w",
+      customContent: (
+        <div className="postman-badge-card">
+          <div className="badge-card-content">
+            <div className="badge-card-image">
+              <img src="https://api.badgr.io/public/assertions/CiujQeB7R9SpP9fYdEiK-w/image" alt="Postman API Fundamentals Student Expert" />
+            </div>
+            <div className="badge-card-info">
+              <h3 className="badge-card-title">Postman API Fundamentals Student Expert</h3>
+              <p className="badge-card-issuer">Postman</p>
+              <p className="badge-card-desc">Postman Student Experts are proficient with APIs and Postman</p>
+              <p className="badge-card-recipient">Awarded to: utsavrai2115@gmail.com</p>
+              <p className="badge-card-date">Aug 3, 2023</p>
+            </div>
+          </div>
+        </div>
+      )
     },
     {
       icon: <FaGithub />,
@@ -50,7 +76,18 @@ const Achievements = () => {
       color: "#21262d",
       subtitle: "Open Source Contribution",
       text: "Participated in Hacktoberfest 2023, contributing to open source projects and promoting collaborative development.",
-      link: "https://www.holopin.io/@utsxvrai#"
+      link: "https://www.holopin.io/@utsxvrai#",
+      customContent: (
+        <div className="holopin-badges">
+          <a href="https://holopin.io/@utsxvrai" target="_blank" rel="noopener noreferrer">
+            <img 
+              src="https://holopin.me/utsxvrai" 
+              alt="@utsxvrai's Holopin badges" 
+              className="holopin-img"
+            />
+          </a>
+        </div>
+      )
     }
   ];
 
@@ -114,6 +151,12 @@ const Achievements = () => {
                           </div>
                         </a>
                       ))}
+                    </div>
+                  )}
+                  
+                  {achievements[activeAchievement].customContent && (
+                    <div className="achievement-custom-content">
+                      {achievements[activeAchievement].customContent}
                     </div>
                   )}
                 </div>

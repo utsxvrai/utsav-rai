@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Hero.css';
-import { FaDownload, FaRss, FaBlog } from 'react-icons/fa';
+import { FaDownload, FaRss, FaBlog, FaBriefcase } from 'react-icons/fa';
 
 const Hero = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -138,6 +138,12 @@ const Hero = () => {
           <div className="hero-intro">
             <p className="hero-subtitle">Hello, It's Me</p>
             <h1 className="hero-title">Utsav Rai</h1>
+            
+            {/* Available for work indicator */}
+            <div className="availability-indicator">
+              <div className="availability-dot"></div>
+              <span className="availability-text">Available for Work & Freelance</span>
+            </div>
           </div>
           
           <div className="hero-text">
@@ -155,6 +161,14 @@ const Hero = () => {
             </a>
             <a href="https://utsav-rai-blog.vercel.app" target="_blank" rel="noopener noreferrer" className="btn blog-btn">
               <FaBlog className="blog-icon" /> Visit My Blog
+            </a>
+          </div>
+          
+          {/* Hire Me Button */}
+          <div className="hire-me-container">
+            <a href="#contact" className="hire-me-btn">
+              <FaBriefcase className="hire-me-icon" />
+              <span>Let's Work Together</span>
             </a>
           </div>
         </div>

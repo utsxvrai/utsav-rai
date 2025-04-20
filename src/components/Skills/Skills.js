@@ -1,35 +1,38 @@
 import React from 'react';
 import './Skills.css';
 import { FaCode, FaDatabase, FaServer, FaCloud, FaJava } from 'react-icons/fa';
-import { SiJavascript, SiPython, SiCplusplus, SiReact, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiMysql, SiRedis, SiDocker, SiKubernetes, SiAmazonaws, SiGooglecloud, SiMicrosoftazure, SiGit, SiLinux, SiTypescript, SiHtml5, SiCss3, SiGraphql, SiFirebase, SiFlask, SiDjango, SiSpringboot } from 'react-icons/si';
+import { SiJavascript, SiPython, SiCplusplus, SiReact, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiMysql, SiRedis, SiDocker, SiKubernetes, SiAmazonaws, SiGooglecloud, SiMicrosoftazure, SiGit, SiLinux, SiTypescript, SiHtml5, SiCss3, SiGraphql, SiFirebase,  SiGo, SiFlask, SiDjango, SiSpringboot } from 'react-icons/si';
 
 const Skills = () => {
   // Skill data with icon, name, and proficiency
   const skills = [
     // Programming Languages
-    { icon: <SiJavascript />, name: 'JavaScript', proficiency: 90, color: '#F7DF1E', category: 'language' },
-    { icon: <SiTypescript />, name: 'TypeScript', proficiency: 85, color: '#3178C6', category: 'language' },
-    { icon: <SiPython />, name: 'Python', proficiency: 85, color: '#3776AB', category: 'language' },
+    { icon: <SiJavascript />, name: 'JavaScript', proficiency: 100, color: '#F7DF1E', category: 'language' },
+    // { icon: <SiTypescript />, name: 'TypeScript', proficiency: 75, color: '#3178C6', category: 'language' },
+    { icon: <SiPython />, name: 'Python', proficiency: 75, color: '#3776AB', category: 'language' },
     { icon: <SiCplusplus />, name: 'C++', proficiency: 80, color: '#00599C', category: 'language' },
     { icon: <FaJava />, name: 'Java', proficiency: 75, color: '#007396', category: 'language' },
-    { icon: <SiHtml5 />, name: 'HTML5', proficiency: 95, color: '#E34F26', category: 'language' },
-    { icon: <SiCss3 />, name: 'CSS3', proficiency: 90, color: '#1572B6', category: 'language' },
-    
+    { icon: <SiHtml5 />, name: 'HTML5', proficiency: 75, color: '#E34F26', category: 'language' },
+    { icon: <SiCss3 />, name: 'CSS3', proficiency: 70, color: '#1572B6', category: 'language' },
+    { icon: <SiGo />, name: 'GoLang', proficiency: 70, color: '#00ADD8', category: 'language' },
+
     // Frameworks & Libraries
     { icon: <SiNodedotjs />, name: 'Node.js', proficiency: 90, color: '#339933', category: 'framework' },
     { icon: <SiExpress />, name: 'Express', proficiency: 88, color: '#000000', category: 'framework' },
-    { icon: <SiReact />, name: 'React', proficiency: 85, color: '#61DAFB', category: 'framework' },
+    { icon: <SiReact />, name: 'React', proficiency: 75, color: '#61DAFB', category: 'framework' },
     { icon: <SiGraphql />, name: 'GraphQL', proficiency: 80, color: '#E10098', category: 'framework' },
-    { icon: <SiFlask />, name: 'Flask', proficiency: 75, color: '#000000', category: 'framework' },
-    { icon: <SiDjango />, name: 'Django', proficiency: 70, color: '#092E20', category: 'framework' },
-    { icon: <SiSpringboot />, name: 'Spring Boot', proficiency: 65, color: '#6DB33F', category: 'framework' },
+    // { icon: <SiFlask />, name: 'Flask', proficiency: 75, color: '#000000', category: 'framework' },
+    // { icon: <SiDjango />, name: 'Django', proficiency: 70, color: '#092E20', category: 'framework' },
+    // { icon: <SiSpringboot />, name: 'Spring Boot', proficiency: 65, color: '#6DB33F', category: 'framework' },
     
     // Databases
     { icon: <SiMongodb />, name: 'MongoDB', proficiency: 90, color: '#47A248', category: 'database' },
     { icon: <SiPostgresql />, name: 'PostgreSQL', proficiency: 85, color: '#336791', category: 'database' },
     { icon: <SiMysql />, name: 'MySQL', proficiency: 85, color: '#4479A1', category: 'database' },
     { icon: <SiRedis />, name: 'Redis', proficiency: 80, color: '#DC382D', category: 'database' },
-    { icon: <SiFirebase />, name: 'Firebase', proficiency: 75, color: '#FFCA28', category: 'database' },
+    // { icon: <SiFirebase />, name: 'Firebase', proficiency: 75, color: '#FFCA28', category: 'database' },
+    { icon: <SiMongodb />, name: 'MongoDB', proficiency: 90, color: '#47A248', category: 'database' },
+    // { icon: <SiCoackroachdb />, name: 'CoackroachDB', proficiency: 80, color: '#47A248', category: 'database' },
     
     // DevOps & Cloud
     { icon: <SiDocker />, name: 'Docker', proficiency: 80, color: '#2496ED', category: 'devops' },

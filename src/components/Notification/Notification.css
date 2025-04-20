@@ -1,0 +1,307 @@
+.notification-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 320px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-height: 450px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Increase max-height when debug info is shown */
+.notification-dropdown:has(.debug-info) {
+  max-height: 650px;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #333;
+}
+
+.notification-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #fff;
+}
+
+.notification-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification-count {
+  background-color: #ff4757;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.close-notification {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-notification:hover {
+  color: #fff;
+}
+
+.notification-list {
+  overflow-y: auto;
+  max-height: 320px;
+}
+
+.notification-item {
+  padding: 15px;
+  border-bottom: 1px solid #333;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.notification-item:hover {
+  background-color: #2a2a2a;
+}
+
+.notification-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* GitHub notification styling */
+.notification-item.github {
+  border-left: 3px solid #2b3137;
+}
+
+.notification-item.github .notification-icon {
+  color: #f0f6fc;
+  background-color: #2b3137;
+}
+
+/* Twitter notification styling */
+.notification-item.twitter {
+  border-left: 3px solid #1da1f2;
+}
+
+.notification-item.twitter .notification-icon {
+  color: #ffffff;
+  background-color: #1da1f2;
+}
+
+/* Keep existing styles for success, warning, error, info */
+.notification-item.success {
+  border-left: 3px solid #2ecc71;
+}
+
+.notification-item.warning {
+  border-left: 3px solid #f39c12;
+}
+
+.notification-item.error {
+  border-left: 3px solid #e74c3c;
+}
+
+.notification-item.info {
+  border-left: 3px solid #3498db;
+}
+
+.notification-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-grow: 1;
+}
+
+.notification-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #eee;
+}
+
+.notification-time {
+  font-size: 12px;
+  color: #888;
+}
+
+.notification-footer {
+  padding: 10px 15px;
+  border-top: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-all-btn {
+  background: none;
+  border: none;
+  color: #3498db;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.view-all-btn:hover {
+  text-decoration: underline;
+}
+
+/* Debug info section */
+.debug-info {
+  padding: 10px 15px;
+  background-color: #2d2d2d;
+  border-top: 1px dashed #444;
+  font-size: 12px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.debug-info h4 {
+  color: #1da1f2;
+  margin: 0 0 8px 0;
+  font-size: 13px;
+}
+
+.debug-info pre {
+  margin: 0;
+  color: #bbb;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Test button styling */
+.test-btn {
+  background-color: transparent;
+  border: 1px solid #1da1f2;
+  border-radius: 4px;
+  color: #1da1f2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 15px;
+  transition: all 0.2s;
+}
+
+.test-btn:hover {
+  background-color: #1da1f2;
+  color: #fff;
+}
+
+.test-btn.small {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* Loading state */
+.notification-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  color: #aaa;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #3498db;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error state */
+.notification-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  color: #e74c3c;
+  text-align: center;
+}
+
+.notification-error p {
+  margin: 15px 0;
+  color: #ddd;
+}
+
+.error-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.refresh-btn {
+  background-color: transparent;
+  border: 1px solid #3498db;
+  border-radius: 4px;
+  color: #3498db;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 15px;
+  margin-top: 10px;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.refresh-btn:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.refresh-btn.small {
+  padding: 4px 8px;
+  font-size: 12px;
+  margin-top: 0;
+}
+
+/* Empty state */
+.notification-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  color: #aaa;
+  text-align: center;
+} 

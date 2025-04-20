@@ -88,7 +88,7 @@ const Contact = () => {
               </div>
               <div className="info-details">
                 <h3>Email</h3>
-                <a href="mailto:utsav.rai@example.com">utsav.rai@example.com</a>
+                <a href="mailto:utsavrai2115@example.com">utsavrai2115@example.com</a>
               </div>
             </div>
             
@@ -98,7 +98,7 @@ const Contact = () => {
               </div>
               <div className="info-details">
                 <h3>Phone</h3>
-                <a href="tel:+1234567890">+1 (234) 567-890</a>
+                <a href="tel:+918423829911">+918423829911</a>
               </div>
             </div>
             

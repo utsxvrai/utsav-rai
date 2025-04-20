@@ -11,6 +11,7 @@ A modern portfolio website built with React, featuring a dark theme with blue ac
 - Skills section with icons
 - Download CV button
 - Social media links (GitHub, LinkedIn)
+- Real-time GitHub activity and Twitter integration
 
 ## Technologies Used
 
@@ -18,12 +19,15 @@ A modern portfolio website built with React, featuring a dark theme with blue ac
 - JavaScript
 - CSS
 - React Icons
+- GitHub API
+- Twitter API v2
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js and npm installed
+- Twitter Developer Account (for Twitter API integration)
 
 ### Installation
 
@@ -45,13 +49,35 @@ A modern portfolio website built with React, featuring a dark theme with blue ac
    npm install
    ```
 
-4. Start the development server
+4. Create a `.env` file in the root directory and add your Twitter API credentials:
+
+   ```
+   REACT_APP_TWITTER_API_KEY=your_twitter_api_key
+   REACT_APP_TWITTER_API_SECRET=your_twitter_api_secret
+   REACT_APP_TWITTER_BEARER_TOKEN=your_twitter_bearer_token
+   ```
+
+   Note: You can get these credentials by creating a project in the [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard).
+
+5. Start the development server
 
    ```
    npm start
    ```
 
-5. Open your browser and visit `http://localhost:3000`
+6. Open your browser and visit `http://localhost:3000`
+
+## Twitter API Setup
+
+1. Go to [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard)
+2. Create a new project and app
+3. Navigate to the "Keys and tokens" tab
+4. Generate "Consumer Keys" (API Key and Secret)
+5. Generate "Bearer Token" if not already available
+6. Add these credentials to your `.env` file
+7. Make sure your app has the appropriate permissions:
+   - Read-only access is sufficient for fetching tweets
+   - If you need more functionality, adjust permissions as needed
 
 ## Customization
 
@@ -70,6 +96,10 @@ npm run build
 ```
 
 This will create a production-ready build in the `build` folder.
+
+### Environment Variables in Production
+
+When deploying to platforms like Vercel or Netlify, make sure to add the environment variables in their respective dashboard settings.
 
 ## License
 

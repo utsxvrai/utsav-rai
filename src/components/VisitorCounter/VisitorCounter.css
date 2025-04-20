@@ -1,0 +1,79 @@
+.visitor-counter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #0c2559;
+  border-radius: 20px;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  /* width: 100%; */
+  max-width: 150px;
+  justify-content: center;
+}
+
+.visitor-counter:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.eye-icon {
+  color: white;
+  font-size: 16px;
+  animation: blink 5s infinite;
+  margin-right: 2px;
+}
+
+.counter-number {
+  font-weight: 600;
+  font-size: 15px;
+  color: white;
+  margin-right: 5px;
+}
+
+.counter-loading {
+  font-weight: 600;
+  font-size: 15px;
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+.counter-label {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  40% { opacity: 1; }
+  50% { opacity: 0.5; }
+  60% { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+  .visitor-counter {
+    padding: 6px 12px;
+    max-width: 130px;
+  }
+  
+  .eye-icon {
+    font-size: 14px;
+  }
+  
+  .counter-number {
+    font-size: 12px;
+    margin-right: 4px;
+  }
+  
+  .counter-label {
+    font-size: 8px;
+  }
+} 
