@@ -158,8 +158,10 @@
   background: rgba(10, 25, 47, 0.3);
   border-radius: 12px;
   padding: 25px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .skills-category:hover {
@@ -173,7 +175,7 @@
   gap: 10px;
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
 }
 
 .category-header svg {
@@ -302,6 +304,7 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: none;
 }
 
 .skills-image {

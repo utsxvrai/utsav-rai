@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Contact.css';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaRobot, FaUser, FaComment, FaTimes, FaCheck, FaExclamationTriangle } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaCheck, FaExclamationTriangle } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 
 // EmailJS constants - Replace these with your actual service ID, template ID, and public key
@@ -12,26 +12,15 @@ const Contact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [chatMessages, setChatMessages] = useState([
-    { sender: 'bot', text: "Hi there! I'm Utsav's AI assistant. How can I help you today?" }
-  ]);
-  const [chatInput, setChatInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [formStatus, setFormStatus] = useState({ show: false, type: '', message: '' });
   
   const formRef = useRef();
-  const chatEndRef = useRef(null);
   
   // Initialize EmailJS when component mounts
   useEffect(() => {
     emailjs.init(EMAILJS_PUBLIC_KEY);
   }, []);
-  
-  // Scroll chat to bottom when new messages arrive
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chatMessages]);
   
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -78,45 +67,6 @@ const Contact = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  };
-  
-  const handleChatToggle = () => {
-    setIsChatOpen(!isChatOpen);
-  };
-  
-  const handleChatSubmit = (e) => {
-    e.preventDefault();
-    if (!chatInput.trim()) return;
-    
-    // Add user message
-    const userMessage = { sender: 'user', text: chatInput };
-    setChatMessages([...chatMessages, userMessage]);
-    
-    // Clear input
-    setChatInput('');
-    
-    // Simulate AI processing
-    setIsLoading(true);
-    
-    // Sample responses - in a real implementation, this would connect to a backend
-    const possibleResponses = [
-      "Thanks for reaching out! I'll pass this to Utsav.",
-      "I understand you're interested in discussing this further. Utsav will get back to you soon!",
-      "Great question! From what I know, Utsav specializes in backend development and system architecture.",
-      "I'd be happy to help connect you with Utsav for more details about his projects.",
-      "Utsav has experience with Node.js, Express, MongoDB, PostgreSQL, and various cloud platforms.",
-      "For detailed project inquiries, Utsav would be the best person to answer. I can notify him of your interest."
-    ];
-    
-    // Simulate delay for the bot response
-    setTimeout(() => {
-      const botResponse = {
-        sender: 'bot',
-        text: possibleResponses[Math.floor(Math.random() * possibleResponses.length)]
-      };
-      setChatMessages(prev => [...prev, botResponse]);
-      setIsLoading(false);
-    }, 1500);
   };
   
   return (
@@ -240,77 +190,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-
-      {/* Floating action buttons */}
-      <div className="floating-buttons">
-        <button 
-          className={`floating-chat-btn ${isChatOpen ? 'active' : ''}`} 
-          onClick={handleChatToggle} 
-          aria-label="Chat with AI Assistant"
-        >
-          {isChatOpen ? <FaTimes /> : <FaComment />}
-        </button>
-      </div>
-      
-      {/* AI Chatbot Dialog */}
-      {isChatOpen && (
-        <div className="chatbot-dialog">
-          <div className="chat-header">
-            <div className="chat-avatar">
-              <FaRobot />
-            </div>
-            <div className="chat-title">
-              <h3>AI Assistant</h3>
-              <p>Ask me anything about Utsav</p>
-            </div>
-            <button className="close-chat" onClick={handleChatToggle}>
-              <FaTimes />
-            </button>
-          </div>
-          
-          <div className="chat-body">
-            <div className="chat-messages">
-              {chatMessages.map((msg, index) => (
-                <div key={index} className={`chat-message ${msg.sender}`}>
-                  <div className="message-avatar">
-                    {msg.sender === 'bot' ? <FaRobot /> : <FaUser />}
-                  </div>
-                  <div className="message-bubble">
-                    <p>{msg.text}</p>
-                  </div>
-                </div>
-              ))}
-              {isLoading && (
-                <div className="chat-message bot">
-                  <div className="message-avatar">
-                    <FaRobot />
-                  </div>
-                  <div className="message-bubble">
-                    <div className="typing-indicator">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                </div>
-              )}
-              <div ref={chatEndRef} />
-            </div>
-            
-            <form className="chat-input-form" onSubmit={handleChatSubmit}>
-              <input
-                type="text"
-                placeholder="Type your message..."
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-              />
-              <button type="submit" className="chat-send-btn">
-                <FaPaperPlane />
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

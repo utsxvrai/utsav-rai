@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaLinkedin, FaBell, FaTwitter } from 'react-icons/fa';
-import { SiLeetcode } from 'react-icons/si';
 import Notification from '../Notification/Notification';
 import VisitorCounter from '../VisitorCounter/VisitorCounter';
 import './Navbar.css';
@@ -180,8 +179,8 @@ const Navbar = () => {
               <a href="https://linkedin.com/in/utsav-rai-161671b16" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin />
               </a>
-              <a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer">
-                <SiLeetcode />
+              <a href="https://twitter.com/utsxvrai" target="_blank" rel="noopener noreferrer">
+                <FaTwitter />
               </a>
             </div>
           </div>

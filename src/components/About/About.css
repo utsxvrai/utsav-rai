@@ -210,6 +210,7 @@
   border-radius: 3px;
   box-shadow: 0 0 8px var(--accent-color);
   transition: width 0.3s ease;
+  border: none;
 }
 
 .about-me-card:hover .card-header::after {
@@ -654,4 +655,13 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
   }
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: none;
 }

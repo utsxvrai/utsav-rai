@@ -84,6 +84,8 @@
   border-left: 3px solid transparent;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--card-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .achievement-tab:hover {
@@ -281,7 +283,7 @@
   transition: all 0.3s ease;
   text-decoration: none;
   color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: none;
 }
 
 .stat-item:hover {
@@ -373,6 +375,7 @@
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
+  
 }
 
 .badge {
@@ -389,6 +392,8 @@
   text-align: center;
   border: 1px solid var(--card-border);
   box-shadow: var(--card-shadow);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .badge:hover {

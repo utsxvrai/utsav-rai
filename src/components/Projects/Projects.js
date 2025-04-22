@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Projects.css';
-import { FaStar, FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaStar, FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaCode } from 'react-icons/fa';
 
 const Projects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -22,6 +22,7 @@ const Projects = () => {
       id: 2,
       name: 'Cron-Socket-Notifier',
       image: '/assets/projects/cron-socket.jpg',
+      status: 'development',
       description: [
         'Built a task tracking system using Node.js to monitor daily tasks like LeetCode problems with completion status.',
         'Implemented cron jobs to reset tasks at midnight and check for incomplete tasks at 10 PM.',
@@ -76,6 +77,12 @@ const Projects = () => {
               <div key={project.id} className="project-card">
                 <div className="project-image">
                   <img src={project.image} alt={project.name} />
+                  {project.status === 'development' && (
+                    <div className="project-status development">
+                      <FaCode />
+                      <span>Under Development</span>
+                    </div>
+                  )}
                   <div className="project-overlay">
                     <h3>{project.name}</h3>
                     <div className="project-links">
@@ -91,7 +98,12 @@ const Projects = () => {
                   </div>
                 </div>
                 <div className="project-info">
-                  <h3 className="project-name">{project.name}</h3>
+                  <h3 className="project-name">
+                    {project.name}
+                    {project.status === 'development' && (
+                      <span className="status-badge development">Under Development</span>
+                    )}
+                  </h3>
                   <div className="project-tech">
                     {project.technologies.map((tech, idx) => (
                       <span key={idx} className="tech-tag">{tech}</span>
