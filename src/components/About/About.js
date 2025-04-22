@@ -141,7 +141,7 @@ const About = () => {
           </div>
 
           <div className="about-social">
-            <a href="https://github.com/utsavrai" target="_blank" rel="noopener noreferrer" className="social-btn">
+            <a href="https://github.com/utsxvrai" target="_blank" rel="noopener noreferrer" className="social-btn">
               <FaGithub /> GitHub
             </a>
             <a href="https://linkedin.com/in/utsav-rai-161671b16" target="_blank" rel="noopener noreferrer" className="social-btn">

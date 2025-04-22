@@ -206,7 +206,7 @@ const Navbar = () => {
           </div>
           
           <div className="social-icons">
-            <a href="https://github.com/utsavrai" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a href="https://github.com/utsxvrai" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <FaGithub />
             </a>
             <a href="https://linkedin.com/in/utsav-rai-161671b16" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
