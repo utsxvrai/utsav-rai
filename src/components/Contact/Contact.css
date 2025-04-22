@@ -65,31 +65,66 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 25px;
-  background: rgba(10, 25, 47, 0.3);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 28px;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--card-border);
+  position: relative;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.15), transparent, transparent, rgba(255, 255, 255, 0.05));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .info-card:hover {
-  transform: translateX(10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transform: translateX(10px) translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  background: var(--card-bg-hover);
 }
 
 .info-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: var(--primary);
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+  background: var(--accent-gradient);
   color: white;
   font-size: 1.5rem;
   flex-shrink: 0;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.info-icon::after {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%) skewX(-30deg);
+  animation: shine-icon 5s infinite;
+}
+
+@keyframes shine-icon {
+  0% { transform: translateX(-100%) skewX(-30deg); }
+  20% { transform: translateX(100%) skewX(-30deg); }
+  100% { transform: translateX(100%) skewX(-30deg); }
 }
 
 .info-details h3 {
@@ -110,11 +145,35 @@
 }
 
 .availability {
-  padding: 25px;
-  background: rgba(10, 25, 47, 0.3);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
+  padding: 28px;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
   margin-top: 10px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.availability:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  background: var(--card-bg-hover);
+}
+
+.availability::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.15), transparent, transparent, rgba(255, 255, 255, 0.05));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .availability h3 {
@@ -166,20 +225,37 @@
 
 /* Contact Form */
 .contact-form-container {
-  background: rgba(10, 25, 47, 0.4);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--card-border);
+  position: relative;
+}
+
+.contact-form-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.15), transparent, transparent, rgba(var(--accent-color-rgb, 0, 128, 255), 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .contact-form {
-  padding: 30px;
+  padding: 35px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
 }
 
 .form-header {
@@ -187,9 +263,14 @@
 }
 
 .form-header h3 {
-  font-size: 1.5rem;
-  margin: 0 0 5px 0;
+  font-size: 1.8rem;
+  margin: 0 0 10px 0;
   color: var(--text-primary);
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
 .form-header p {
@@ -211,21 +292,22 @@
 }
 
 .form-group input, .form-group textarea {
-  padding: 12px 15px;
+  padding: 15px 18px;
   background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  border: 1px solid rgba(var(--accent-color-rgb, 0, 128, 255), 0.15);
+  border-radius: 12px;
   color: var(--text-primary);
   font-size: 1rem;
   transition: all 0.3s ease;
   resize: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-group input:focus, .form-group textarea:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(0, 128, 255, 0.2);
-  background: rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb, 0, 128, 255), 0.2);
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .submit-btn {
@@ -233,8 +315,8 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 12px 25px;
-  background: var(--primary);
+  padding: 14px 32px;
+  background: var(--accent-gradient);
   color: white;
   border: none;
   border-radius: 30px;
@@ -242,14 +324,31 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.submit-btn:hover::before {
+  transform: translateX(100%);
 }
 
 .submit-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  background: var(--primary-dark, #0066cc);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .submit-btn svg {
@@ -329,21 +428,21 @@
   position: fixed;
   bottom: 100px;
   left: 30px;
-  width: 350px;
-  height: 500px;
+  width: 380px;
+  height: 520px;
   max-width: calc(100vw - 60px);
   max-height: 70vh;
-  background: rgba(10, 25, 47, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
   overflow: hidden;
   z-index: 999;
   display: flex;
   flex-direction: column;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-  animation: slideUp 0.3s ease;
+  border: 1px solid var(--card-border);
+  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes slideUp {
@@ -360,10 +459,10 @@
 .chat-header {
   display: flex;
   align-items: center;
-  padding: 15px 20px;
-  background: var(--primary);
+  padding: 20px 24px;
+  background: var(--accent-gradient);
   color: white;
-  height: 70px;
+  height: 80px;
   position: relative;
 }
 
@@ -526,32 +625,36 @@
 
 .chat-input-form input {
   flex-grow: 1;
-  padding: 10px 15px;
+  padding: 14px 20px;
   background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  border: 1px solid rgba(var(--accent-color-rgb, 0, 128, 255), 0.2);
+  border-radius: 24px;
   color: var(--text-primary);
   font-size: 0.95rem;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
 .chat-input-form input:focus {
   outline: none;
-  border-color: var(--primary);
+  border-color: var(--accent-color);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(var(--accent-color-rgb, 0, 128, 255), 0.15);
 }
 
 .chat-send-btn {
   margin-left: 10px;
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--primary);
+  background: var(--accent-gradient);
   color: white;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .chat-send-btn:hover {

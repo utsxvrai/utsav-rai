@@ -109,7 +109,21 @@ const Navbar = () => {
   }, [isMobileMenuOpen]);
 
   const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
+    // Handle both "home" and "hero" sections as the same
+    let targetId = sectionId;
+    if (sectionId === 'home') {
+      // First try to find a section with id "home"
+      const homeSection = document.getElementById('home');
+      // If not found, try to find "hero" section
+      if (!homeSection) {
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+          targetId = 'hero';
+        }
+      }
+    }
+    
+    const section = document.getElementById(targetId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
       setIsMobileMenuOpen(false);
@@ -123,7 +137,10 @@ const Navbar = () => {
     >
       <div className="container navbar-container">
         <div className="logo">
-          <a href="#home">
+          <a href="#hero" onClick={(e) => {
+            e.preventDefault();
+            scrollToSection('home');
+          }}>
             <span className="logo-text">UR</span>
             <span className="logo-indicator"></span>
           </a>
@@ -132,7 +149,10 @@ const Navbar = () => {
         <div className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
           <ul>
             <li className={activeSection === 'home' ? 'active' : ''}>
-              <a href="#home" onClick={() => scrollToSection('home')}>Home</a>
+              <a href="#hero" onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('home');
+              }}>Home</a>
             </li>
             <li className={activeSection === 'about' ? 'active' : ''}>
               <a href="#about" onClick={() => scrollToSection('about')}>About Me</a>

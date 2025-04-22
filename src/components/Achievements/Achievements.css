@@ -73,26 +73,30 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 15px;
+  padding: 18px;
   border-radius: 12px;
-  background: rgba(10, 25, 47, 0.3);
-  backdrop-filter: blur(10px);
+  background: rgba(23, 29, 41, 0.55);
+  backdrop-filter: blur(8px);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
   border-left: 3px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--card-border);
 }
 
 .achievement-tab:hover {
-  background: rgba(10, 25, 47, 0.5);
-  transform: translateX(5px);
+  background: rgba(23, 29, 41, 0.75);
+  transform: translateX(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .achievement-tab.active {
-  background: rgba(10, 25, 47, 0.6);
+  background: rgba(23, 29, 41, 0.85);
   border-left-color: var(--tab-color);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transform: translateX(5px) scale(1.02);
 }
 
 .tab-icon {
@@ -101,19 +105,20 @@
   justify-content: center;
   width: 45px;
   height: 45px;
-  border-radius: 50%;
+  border-radius: 12px;
   background: rgba(0, 0, 0, 0.2);
   font-size: 1.5rem;
   color: var(--tab-color);
   flex-shrink: 0;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .achievement-tab.active .tab-icon {
   background: var(--tab-color);
   color: white;
   transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(var(--tab-color-rgb, 0, 128, 255), 0.4);
 }
 
 .tab-info {
@@ -164,14 +169,14 @@
 }
 
 .achievement-card {
-  background: rgba(10, 25, 47, 0.4);
-  backdrop-filter: blur(10px);
+  background: rgba(23, 29, 41, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  padding: 35px;
+  box-shadow: var(--card-shadow);
   height: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--card-border);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -186,7 +191,25 @@
   width: 6px;
   height: 100%;
   background-color: var(--highlight-color);
-  opacity: 0.8;
+  opacity: 0.9;
+}
+
+.achievement-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(to bottom right, 
+    rgba(255, 255, 255, 0.1), 
+    transparent, 
+    transparent, 
+    rgba(var(--highlight-color-rgb, 0, 128, 255), 0.1)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .achievement-header {
@@ -236,30 +259,36 @@
   margin-top: 15px;
   flex-grow: 1;
   padding-bottom: 15px;
+  overflow-y: auto;
+  max-height: 300px;
+  padding-right: 10px;
 }
 
 .achievement-stats {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 15px;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .stat-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px;
+  padding: 15px;
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  border-radius: 12px;
   transition: all 0.3s ease;
   text-decoration: none;
   color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .stat-item:hover {
-  background: rgba(0, 0, 0, 0.3);
-  transform: translateY(-3px);
+  background: rgba(var(--highlight-color-rgb, 0, 128, 255), 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(var(--highlight-color-rgb, 0, 128, 255), 0.2);
 }
 
 .stat-icon {
@@ -353,28 +382,66 @@
   gap: 15px;
   padding: 25px;
   width: 200px;
-  background: rgba(10, 25, 47, 0.3);
-  border-radius: 12px;
-  transition: all 0.3s ease;
+  background: rgba(23, 29, 41, 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-align: center;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
 }
 
 .badge:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-12px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  background: rgba(23, 29, 41, 0.65);
 }
 
 .badge-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), #9b59b6);
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--accent-color), #9b59b6);
   color: white;
-  font-size: 1.8rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-icon::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.2),
+    transparent,
+    rgba(255, 255, 255, 0.2)
+  );
+  transform: rotate(30deg);
+  animation: shine 3s infinite linear;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.badge:hover .badge-icon::after {
+  opacity: 1;
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(30deg) translateX(-150%);
+  }
+  100% {
+    transform: rotate(30deg) translateX(150%);
+  }
 }
 
 .badge h4 {
@@ -397,9 +464,38 @@
   }
   
   .achievement-tabs {
+    display: flex;
     flex-direction: row;
     overflow-x: auto;
-    padding-bottom: 15px;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: var(--primary, #0080ff) rgba(255, 255, 255, 0.05); /* For Firefox */
+    padding-bottom: 20px;
+    gap: 15px;
+    padding: 5px 5px 20px 5px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  /* Special scrollbar styling for achievement tabs */
+  .achievement-tabs::-webkit-scrollbar {
+    height: 5px;
+  }
+  
+  .achievement-tabs::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin: 0 15%;
+  }
+  
+  .achievement-tabs::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, transparent, var(--primary, #0080ff), transparent);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 128, 255, 0.3);
+  }
+  
+  body.light-mode .achievement-tabs::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, transparent, #ff9776, transparent);
+    box-shadow: 0 2px 6px rgba(255, 151, 118, 0.3);
   }
   
   .achievement-tab {
@@ -409,6 +505,7 @@
     text-align: center;
     padding: 15px 10px;
     flex-shrink: 0;
+    scroll-snap-align: start;
   }
   
   .tab-info h3 {
@@ -434,6 +531,11 @@
 }
 
 @media (max-width: 768px) {
+  .achievements ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  
   .achievements {
     padding: 80px 0;
   }
@@ -485,6 +587,15 @@
 }
 
 @media (max-width: 576px) {
+  .achievements ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .achievement-tabs::-webkit-scrollbar-track {
+    margin: 0 10%;
+  }
+  
   .achievements {
     padding: 60px 0;
   }
@@ -765,4 +876,101 @@
   .badge-card-date {
     font-size: 0.8rem;
   }
-} 
+}
+
+/* Custom Trendy Scrollbar Styles for Achievements Page */
+.achievements ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.achievements ::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.achievements ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--primary, #0080ff), rgba(0, 128, 255, 0.7));
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.achievements ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--primary, #0080ff), rgba(0, 128, 255, 0.9));
+}
+
+/* Light mode scrollbar styling */
+body.light-mode .achievements ::-webkit-scrollbar-track {
+  background: rgba(255, 151, 118, 0.05);
+}
+
+body.light-mode .achievements ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ff9776, rgba(255, 151, 118, 0.7));
+}
+
+body.light-mode .achievements ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ff9776, rgba(255, 151, 118, 0.9));
+}
+
+/* Enhance the achievement description scrolling */
+.achievement-description {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-top: 15px;
+  flex-grow: 1;
+  padding-bottom: 15px;
+  overflow-y: auto;
+  max-height: 300px;
+  padding-right: 10px;
+}
+
+/* Enhance achievement cards with subtle scroll indicators */
+.achievement-card:hover::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 100px;
+  height: 60px;
+  width: 3px;
+  background: linear-gradient(to bottom, 
+    transparent, 
+    var(--highlight-color, #0080ff), 
+    transparent
+  );
+  opacity: 0.6;
+  border-radius: 3px;
+  animation: scroll-indicator 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes scroll-indicator {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(10px);
+  }
+}
+
+/* Make the scrollbar more visible on tablets */
+@media (max-width: 768px) {
+  .achievements ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+/* Make the scrollbar more visible on mobile */
+@media (max-width: 576px) {
+  .achievements ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .achievement-tabs::-webkit-scrollbar-track {
+    margin: 0 10%;
+  }
+}

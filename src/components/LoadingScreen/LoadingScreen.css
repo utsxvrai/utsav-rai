@@ -44,14 +44,14 @@
 .terminal {
   width: 92%;
   max-width: 650px;
-  background-color: rgba(16, 20, 29, 0.9);
+  background-color: rgba(16, 18, 36, 0.92);
   border-radius: 10px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(103, 232, 249, 0.15);
   overflow: hidden;
   position: relative;
   z-index: 10;
   animation: terminal-appear 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(103, 232, 249, 0.2);
   backdrop-filter: blur(10px);
 }
 
@@ -67,11 +67,11 @@
 }
 
 .terminal-header {
-  background-color: rgba(23, 28, 39, 0.8);
+  background-color: rgba(20, 22, 42, 0.95);
   padding: 12px 15px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(103, 232, 249, 0.2);
 }
 
 .terminal-button {
@@ -100,18 +100,20 @@
 
 .terminal-title {
   margin-left: 15px;
-  color: #e2e2e2;
+  color: #e2f3f5;
   font-family: 'Courier New', monospace;
   font-size: 14px;
   letter-spacing: 0.5px;
+  text-shadow: 0 0 5px rgba(103, 232, 249, 0.3);
 }
 
 .terminal-content {
   padding: 20px;
   min-height: 280px;
   font-family: "Courier New", monospace;
-  color: #f8f8f8;
-  background-color: rgba(10, 12, 19, 0.95);
+  color: #f8f9fa;
+  background-color: rgba(13, 15, 30, 0.95);
+  background-image: linear-gradient(to bottom, rgba(20, 22, 42, 0.7), rgba(13, 15, 30, 0.95));
   position: relative;
   overflow: hidden;
   font-size: 15px;
@@ -152,10 +154,10 @@
 }
 
 .prompt {
-  color: #50fa7b;
+  color: #67e8f9;
   margin-right: 10px;
   font-weight: bold;
-  text-shadow: 0 0 5px rgba(80, 250, 123, 0.3);
+  text-shadow: 0 0 8px rgba(103, 232, 249, 0.5);
   position: relative;
 }
 
@@ -173,12 +175,12 @@
 .cursor {
   width: 10px;
   height: 18px;
-  background-color: #f8f8f8;
+  background-color: #67e8f9;
   display: inline-block;
   margin-left: 4px;
   animation: blink 1s step-end infinite;
   opacity: 0;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 8px rgba(103, 232, 249, 0.8);
 }
 
 .cursor.visible {
@@ -194,32 +196,33 @@
   }
 }
 
-/* Command line colors - Simple pink, yellow, green scheme */
+/* Command line colors - Modern cyberpunk neon theme */
 .command-line:nth-child(2) .command {
-  color: #ffb8d1; /* Light pink */
+  color: #f9a8d4; /* Neon pink */
 }
 
 .command-line:nth-child(3) .command {
-  color: #ff6188; /* Pink */
+  color: #c084fc; /* Purple */
 }
 
 .command-line:nth-child(4) .command {
-  color: #ffd866; /* Yellow */
+  color: #818cf8; /* Indigo */
 }
 
 .command-line:nth-child(5) .command {
-  color: #a9dc76; /* Green */
+  color: #34d399; /* Emerald */
 }
 
 .command-line:nth-child(6) .command {
-  color: #78dce8; /* Light blue */
+  color: #38bdf8; /* Sky blue */
 }
 
 /* Make the welcome message more prominent */
 .command-line:last-child .command {
   font-weight: bold;
-  color: #fc9867; /* Orange */
+  color: #fb7185; /* Rose */
   position: relative;
+  text-shadow: 0 0 10px rgba(251, 113, 133, 0.4);
 }
 
 /* Remove the glow animation */
@@ -254,13 +257,13 @@
 } */
 
 .red {
-  background-color: #ff5f56;
+  background-color: #f43f5e;
 }
 
 .yellow {
-  background-color: #ffbd2e;
+  background-color: #facc15;
 }
 
 .green {
-  background-color: #27c93f;
+  background-color: #10b981;
 } 

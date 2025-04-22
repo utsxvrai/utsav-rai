@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { FaChevronUp } from 'react-icons/fa';
+import { FaChevronUp, FaRocket } from 'react-icons/fa';
 import './ScrollToTop.css';
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   // Show button when page is scrolled down
   useEffect(() => {
@@ -15,9 +16,17 @@ const ScrollToTop = () => {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
 
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   // Scroll to top handler
@@ -31,8 +40,14 @@ const ScrollToTop = () => {
   return (
     <>
       {isVisible && (
-        <div onClick={scrollToTop} className="scroll-to-top">
-          <FaChevronUp />
+        <div 
+          onClick={scrollToTop} 
+          className={`scroll-to-top ${isMobile ? 'mobile' : ''}`}
+          aria-label="Scroll to top"
+          title="Back to top"
+        >
+          {isMobile ? <FaRocket className="scroll-icon" /> : <FaChevronUp className="scroll-icon" />}
+          <span className="scroll-effect"></span>
         </div>
       )}
     </>

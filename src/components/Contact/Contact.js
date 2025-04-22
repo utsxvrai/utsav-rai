@@ -61,11 +61,11 @@ const Contact = () => {
           type: 'success',
           message: 'Message sent successfully! I will get back to you soon.'
         });
-        
-        // Reset form
-        setName('');
-        setEmail('');
-        setMessage('');
+    
+    // Reset form
+    setName('');
+    setEmail('');
+    setMessage('');
       })
       .catch((err) => {
         console.error('FAILED...', err);
@@ -233,7 +233,7 @@ const Contact = () => {
                 <span>{isLoading ? 'Sending...' : 'Send Message'}</span>
                 {isLoading ? 
                   <div className="btn-loader"></div> : 
-                  <FaPaperPlane />
+                <FaPaperPlane />
                 }
               </button>
             </form>

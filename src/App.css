@@ -1,3 +1,47 @@
+/* Global Modern Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #0080ff, rgba(0, 128, 255, 0.7));
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #0080ff, rgba(0, 128, 255, 0.9));
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0080ff rgba(0, 0, 0, 0.1);
+}
+
+/* Light mode scrollbar adjustments */
+body.light-mode ::-webkit-scrollbar-track {
+  background: rgba(255, 151, 118, 0.1);
+}
+
+body.light-mode ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ff9776, rgba(255, 151, 118, 0.7));
+}
+
+body.light-mode ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ff9776, rgba(255, 151, 118, 0.9));
+}
+
+body.light-mode * {
+  scrollbar-color: #ff9776 rgba(255, 151, 118, 0.1);
+}
+
 /* Global styles */
 :root {
   /* Dark Mode (Default) */
@@ -17,17 +61,21 @@
 
 /* Light Mode Variables - Updated with trendy peach colors */
 body.light-mode {
-  --background-color: #fff8f5;
+  --background-color: #f7f3f0;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-bg-hover: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(255, 151, 118, 0.2);
+  --card-shadow: 0 8px 32px rgba(255, 151, 118, 0.15);
   --text-color: #433636;
   --text-secondary: #7d6868;
   --accent-color: #ff9776;
+  --accent-gradient: linear-gradient(to right, #ff9776, #ff7d57);
   --gradient-color-1: #fff0eb;
   --gradient-color-2: #fff6f3;
   --gradient-color-3: #ffeae3;
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --hover-effect: rgba(255, 151, 118, 0.08);
+  --hover-effect: rgba(255, 151, 118, 0.12);
   --border-color: rgba(255, 191, 169, 0.3);
-  --shadow-color: rgba(255, 151, 118, 0.15);
+  --shadow-color: rgba(255, 151, 118, 0.2);
 }
 
 /* Global Theme Transition */
@@ -127,11 +175,38 @@ section {
   z-index: 1;
   overflow: visible;
   background-color: transparent;
+  padding: var(--section-padding);
 }
 
-/* Remove section divider gradients */
-section::before {
-  display: none;
+/* Add alternating subtle backgrounds for better section distinction */
+section:nth-of-type(odd) {
+  background: linear-gradient(to bottom, transparent, rgba(0, 20, 40, 0.2), transparent);
+}
+
+section:nth-of-type(even) {
+  background: linear-gradient(to bottom, transparent, rgba(20, 0, 40, 0.1), transparent);
+}
+
+/* Light mode alternating sections */
+body.light-mode section:nth-of-type(odd) {
+  background: linear-gradient(to bottom, transparent, rgba(255, 151, 118, 0.06), transparent);
+}
+
+body.light-mode section:nth-of-type(even) {
+  background: linear-gradient(to bottom, transparent, rgba(255, 200, 180, 0.08), transparent);
+}
+
+/* Add subtle section dividers */
+section:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-color), transparent);
+  opacity: 0.6;
 }
 
 .container {
@@ -185,15 +260,15 @@ ul {
 
 /* Light mode Scroll to top button */
 body.light-mode .scroll-to-top {
-  background: #ff9776;
+  /* Styles now handled in ScrollToTop.css */
 }
 
 body.light-mode .scroll-to-top:hover {
-  background: #ff7d57;
-  box-shadow: 0 10px 25px rgba(255, 151, 118, 0.35);
+  /* Styles now handled in ScrollToTop.css */
 }
 
 /* Scroll to top button */
+/* Original scroll-to-top styles are now handled in ScrollToTop.css
 .scroll-to-top {
   position: fixed;
   bottom: 30px;
@@ -217,18 +292,17 @@ body.light-mode .scroll-to-top:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px var(--shadow-color);
 }
+*/
 
 @media (max-width: 768px) {
   .scroll-to-top {
-    right: 20px;
-    bottom: 20px;
+    /* Styles now handled in ScrollToTop.css */
   }
 }
 
 @media (max-width: 576px) {
   .scroll-to-top {
-    right: 10px;
-    bottom: 15px;
+    /* Styles now handled in ScrollToTop.css */
   }
 }
 
@@ -258,4 +332,72 @@ body.light-mode .blue-glow::after {
 /* Custom highlight text */
 .highlight {
   color: var(--accent-color);
-} 
+}
+
+/* Modern Card/Box Styles */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to bottom right, 
+    rgba(255, 255, 255, 0.1), 
+    transparent, 
+    transparent, 
+    rgba(255, 255, 255, 0.05)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  background: var(--card-bg-hover);
+}
+
+/* Gradient Border Card */
+.gradient-border-card {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1px;
+  box-shadow: var(--card-shadow);
+}
+
+.gradient-border-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: var(--accent-gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.gradient-border-card .card-content {
+  background: var(--card-bg);
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}

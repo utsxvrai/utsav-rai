@@ -78,25 +78,44 @@
 }
 
 .project-card {
-  background: var(--bg-card);
-  border-radius: 12px;
+  background: var(--card-bg);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   height: 100%;
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  background: var(--card-bg-hover);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), transparent, transparent, rgba(255, 255, 255, 0.05));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .project-image {
   position: relative;
   overflow: hidden;
   height: 200px;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .project-image img {
@@ -155,26 +174,30 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 15px;
-  border-radius: 20px;
+  padding: 8px 18px;
+  border-radius: 24px;
   font-size: 0.9rem;
+  font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
+  letter-spacing: 0.5px;
 }
 
 .project-link.github {
-  background: #24292e;
+  background: linear-gradient(to right, #24292e, #333);
   color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .project-link.demo {
-  background: var(--primary);
+  background: var(--accent-gradient);
   color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .project-link:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .project-info {
@@ -198,12 +221,20 @@
 }
 
 .tech-tag {
-  background: var(--bg-alt);
-  color: var(--primary);
-  padding: 5px 10px;
-  border-radius: 15px;
+  background: rgba(0, 128, 255, 0.15);
+  color: var(--accent-color);
+  padding: 6px 12px;
+  border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 128, 255, 0.2);
+}
+
+body.light-mode .tech-tag {
+  background: rgba(255, 151, 118, 0.15);
+  border-color: rgba(255, 151, 118, 0.2);
 }
 
 .project-features {
@@ -213,19 +244,26 @@
 }
 
 .project-features li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.5;
+  position: relative;
+  padding-left: 5px;
 }
 
 .feature-icon {
-  color: var(--primary);
+  color: var(--accent-color);
   min-width: 16px;
   margin-top: 3px;
+  filter: drop-shadow(0 2px 3px rgba(0, 128, 255, 0.3));
+}
+
+body.light-mode .feature-icon {
+  filter: drop-shadow(0 2px 3px rgba(255, 151, 118, 0.3));
 }
 
 @media (max-width: 992px) {
