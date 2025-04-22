@@ -8,7 +8,6 @@ import './Navbar.css';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [ticking, setTicking] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -98,7 +97,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, throttleScroll]);
 
   // Update useEffect to handle body class for mobile menu
   useEffect(() => {

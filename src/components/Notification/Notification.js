@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaBell, FaTimes, FaExclamationCircle, FaSync, FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaTimes, FaExclamationCircle, FaSync, FaGithub, FaTwitter } from 'react-icons/fa';
 import './Notification.css';
 
 const Notification = ({ 

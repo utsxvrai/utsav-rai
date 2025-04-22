@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Hero.css';
-import { FaDownload, FaRss, FaBlog, FaBriefcase, FaInfoCircle, FaTools, FaCode } from 'react-icons/fa';
+import { FaDownload, FaBlog, FaBriefcase, FaInfoCircle, FaTools, FaCode } from 'react-icons/fa';
 
 const Hero = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -66,9 +66,44 @@ const Hero = () => {
 
   // Handle Work Together click
   const handleWorkTogetherClick = (e) => {
-    showCustomNotification('Scrolling to contact section...', 'success');
+    // showCustomNotification('Scrolling to contact section...', 'success');
     // Let the default anchor behavior continue
   };
+
+  // Handle the 3D tilt effect
+  useEffect(() => {
+    if (!imageRef.current) return;
+
+    const imageRefValue = imageRef.current; // Store ref in a variable for cleanup
+    
+    const handleMouseMove = (e) => {
+      const containerRect = imageRefValue.getBoundingClientRect();
+      const x = e.clientX - containerRect.left;
+      const y = e.clientY - containerRect.top;
+      
+      const centerX = containerRect.width / 2;
+      const centerY = containerRect.height / 2;
+      
+      const percentX = (x - centerX) / centerX;
+      const percentY = (y - centerY) / centerY;
+      
+      setMousePosition({ x: percentX, y: percentY });
+    };
+
+    const handleMouseLeave = () => {
+      setMousePosition({ x: 0, y: 0 });
+    };
+
+    imageRefValue.addEventListener('mousemove', handleMouseMove);
+    imageRefValue.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      if (imageRefValue) {
+        imageRefValue.removeEventListener('mousemove', handleMouseMove);
+        imageRefValue.removeEventListener('mouseleave', handleMouseLeave);
+      }
+    };
+  }, []);
 
   // Preload the hero image with a forced delay to show loading animation
   useEffect(() => {
@@ -88,40 +123,7 @@ const Hero = () => {
         img.src = heroImagePath + '?t=' + new Date().getTime();
       }
     }, 100);
-  }, []);
-
-  // Handle the 3D tilt effect
-  useEffect(() => {
-    if (!imageRef.current) return;
-
-    const handleMouseMove = (e) => {
-      const containerRect = imageRef.current.getBoundingClientRect();
-      const x = e.clientX - containerRect.left;
-      const y = e.clientY - containerRect.top;
-      
-      const centerX = containerRect.width / 2;
-      const centerY = containerRect.height / 2;
-      
-      const percentX = (x - centerX) / centerX;
-      const percentY = (y - centerY) / centerY;
-      
-      setMousePosition({ x: percentX, y: percentY });
-    };
-
-    const handleMouseLeave = () => {
-      setMousePosition({ x: 0, y: 0 });
-    };
-
-    imageRef.current.addEventListener('mousemove', handleMouseMove);
-    imageRef.current.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      if (imageRef.current) {
-        imageRef.current.removeEventListener('mousemove', handleMouseMove);
-        imageRef.current.removeEventListener('mouseleave', handleMouseLeave);
-      }
-    };
-  }, []);
+  }, [heroImagePath, imageLoaded]);
 
   // Create and animate particles
   useEffect(() => {
@@ -229,20 +231,18 @@ const Hero = () => {
           </div>
           
           <div className="hero-cta">
-            <a 
-              href="#" 
+            <button 
               className="btn download-btn" 
               onClick={handleDownloadClick}
             >
               <FaDownload className="download-icon" /> Download CV
-            </a>
-            <a 
-              href="#" 
+            </button>
+            <button 
               className="btn blog-btn"
               onClick={handleBlogClick}
             >
               <FaBlog className="blog-icon" /> Visit My Blog
-            </a>
+            </button>
           </div>
           
           {/* Hire Me Button */}

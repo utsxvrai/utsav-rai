@@ -1,7 +1,7 @@
 import React from 'react';
 import './Skills.css';
 import { FaCode, FaDatabase, FaServer, FaCloud, FaJava } from 'react-icons/fa';
-import { SiJavascript, SiPython, SiCplusplus, SiReact, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiMysql, SiRedis, SiDocker, SiKubernetes, SiAmazonaws, SiGooglecloud, SiMicrosoftazure, SiGit, SiLinux, SiTypescript, SiHtml5, SiCss3, SiGraphql, SiFirebase,  SiGo, SiFlask, SiDjango, SiSpringboot } from 'react-icons/si';
+import { SiJavascript, SiPython, SiCplusplus, SiReact, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiMysql, SiRedis, SiDocker, SiKubernetes, SiAmazonaws, SiGooglecloud, SiMicrosoftazure, SiGit, SiLinux, SiHtml5, SiCss3, SiGraphql, SiGo } from 'react-icons/si';
 
 const Skills = () => {
   // Skill data with icon, name, and proficiency
@@ -31,8 +31,6 @@ const Skills = () => {
     { icon: <SiMysql />, name: 'MySQL', proficiency: 85, color: '#4479A1', category: 'database' },
     { icon: <SiRedis />, name: 'Redis', proficiency: 80, color: '#DC382D', category: 'database' },
     // { icon: <SiFirebase />, name: 'Firebase', proficiency: 75, color: '#FFCA28', category: 'database' },
-    { icon: <SiMongodb />, name: 'MongoDB', proficiency: 90, color: '#47A248', category: 'database' },
-    // { icon: <SiCoackroachdb />, name: 'CoackroachDB', proficiency: 80, color: '#47A248', category: 'database' },
     
     // DevOps & Cloud
     { icon: <SiDocker />, name: 'Docker', proficiency: 80, color: '#2496ED', category: 'devops' },

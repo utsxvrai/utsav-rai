@@ -9,6 +9,7 @@ import Achievements from './components/Achievements/Achievements';
 import Contact from './components/Contact/Contact';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen';
+import { initAnalytics, trackPageView } from './utils/analyticsService';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -16,6 +17,19 @@ function App() {
   const handleLoadingComplete = () => {
     setLoading(false);
   };
+  
+  // Initialize analytics and track page view
+  useEffect(() => {
+    // Initialize analytics
+    initAnalytics();
+    
+    // Track page view after a short delay
+    const timer = setTimeout(() => {
+      trackPageView();
+    }, 1500);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="App">
