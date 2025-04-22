@@ -16,7 +16,7 @@ const Projects = () => {
         'Deployed with Docker and Kubernetes for containerization and seamless scalability.'
       ],
       technologies: ['Node.js', 'Express', 'MySQL', 'Docker', 'Kubernetes'],
-      githubLink: 'https://github.com/utsavrai/Flight-Service'
+      githubLink: 'https://github.com/utsxvrai/Flight-Service'
     },
     {
       id: 2,
