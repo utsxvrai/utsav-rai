@@ -7,7 +7,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@vercel/analytics": "^1.5.0",
+    "@vercel/analytics": "^0.1.11",
     "emailjs-com": "^3.2.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.13.2",
@@ -42,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "overrides": {
+    "typescript": "4.9.5"
   }
 }

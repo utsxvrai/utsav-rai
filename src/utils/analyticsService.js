@@ -2,6 +2,17 @@
 // This service helps enhance our visitor counter with real analytics data
 // while still using Vercel Analytics for the backend
 
+// Import Vercel Analytics (will be undefined during SSR)
+let Analytics;
+if (typeof window !== 'undefined') {
+  try {
+    // Dynamic import to avoid SSR issues
+    Analytics = require('@vercel/analytics');
+  } catch (e) {
+    console.warn('Vercel Analytics not loaded:', e.message);
+  }
+}
+
 // Initialize analytics
 export const initAnalytics = () => {
   try {
@@ -10,11 +21,12 @@ export const initAnalytics = () => {
       if (!localStorage.getItem('visitor_count')) {
         localStorage.setItem('visitor_count', '1042');
       }
-    }
-    
-    // Only try to connect to analytics in client-side code
-    if (typeof window !== 'undefined' && window.vercelAnalytics) {
-      console.log('Vercel Analytics initialized');
+      
+      // Initialize Vercel Analytics
+      if (Analytics && Analytics.inject) {
+        Analytics.inject();
+        console.log('Vercel Analytics initialized');
+      }
     }
   } catch (error) {
     console.error('Error initializing analytics:', error);
@@ -32,10 +44,8 @@ export const trackPageView = () => {
         localStorage.setItem('visitor_count', newCount.toString());
       }
       
-      // Track in Vercel Analytics if available
-      if (window.vercelAnalytics) {
-        window.vercelAnalytics.track('pageview');
-      }
+      // Analytics are automatically tracked with the older version
+      // No need to manually track pageviews
     }
   } catch (error) {
     console.error('Error tracking page view:', error);
