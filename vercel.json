@@ -4,6 +4,7 @@
   "framework": "create-react-app",
   "routes": [
     { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/favicon.ico", "dest": "/favicon.ico" },
     { "src": "/manifest.json", "dest": "/manifest.json" },
     { "src": "/asset-manifest.json", "dest": "/asset-manifest.json" },
