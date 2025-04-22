@@ -6,81 +6,81 @@ const VisitorCounter = () => {
   const [visitorCount, setVisitorCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  // Get the API URL dynamically based on environment
+  const getApiUrl = () => {
+    if (process.env.NODE_ENV === 'production') {
+      // In production, use the deployed URL
+      return 'https://your-vercel-deployment-url.vercel.app/api/visitor-count';
+    } else {
+      // In development, use localhost
+      return 'http://localhost:3000/api/visitor-count';
+    }
+  };
+
   useEffect(() => {
-    // Function to fetch visitor count
+    // Function to fetch visitor count from MongoDB
     const fetchVisitorCount = async () => {
       try {
-        // First, try to get the count from localStorage to avoid unnecessary API calls
-        const storedCount = localStorage.getItem('portfolio_visitor_count');
-        const lastUpdate = localStorage.getItem('portfolio_last_update');
-        const now = new Date().getTime();
-        
-        // If we have a stored count and it was updated in the last 24 hours, use it
-        if (storedCount && lastUpdate && (now - parseInt(lastUpdate)) < 24 * 60 * 60 * 1000) {
-          setVisitorCount(parseInt(storedCount));
-          setLoading(false);
-          return;
-        }
-        
-        // Otherwise, get a fresh count
-        // For simplicity, we'll simulate a count for now
-        // In a real implementation, you'd call your backend API
-        
-        let count;
-        
-        // In production, this would be an API call to your backend
-        // Example: const response = await fetch('https://your-api.com/visitor-count');
-        // const data = await response.json();
-        // count = data.count;
-        
-        // For demo purposes, we'll simulate an API call by retrieving and incrementing 
-        // a value from localStorage as our simple persistence
-        const persistedCount = localStorage.getItem('portfolio_visitor_total') || '0';
-        count = parseInt(persistedCount) + 1;
-        localStorage.setItem('portfolio_visitor_total', count.toString());
-        
-        // Update state and cache
-        setVisitorCount(count);
-        localStorage.setItem('portfolio_visitor_count', count.toString());
-        localStorage.setItem('portfolio_last_update', now.toString());
-        
+        // Always get the count from the API
+        const response = await fetch(getApiUrl());
+        const data = await response.json();
+        setVisitorCount(data.count);
       } catch (error) {
         console.error('Error fetching visitor count:', error);
         // Use a fallback value if there's an error
-        setVisitorCount(942); // Fallback to a reasonable number
+        const fallbackCount = parseInt(localStorage.getItem('portfolio_visitor_total') || '942');
+        setVisitorCount(fallbackCount);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchVisitorCount();
-    
-    // Register page view (increment counter)
-    // This would typically be an API call to your backend
+    // Function to register a new visit
     const registerPageView = async () => {
       try {
-        // In a real implementation, you'd call your backend API
-        // Example: await fetch('https://your-api.com/register-visit', { method: 'POST' });
-        
-        // For demo purposes, we'll simulate by increasing the count after a delay
-        setTimeout(() => {
-          const currentCount = parseInt(localStorage.getItem('portfolio_visitor_count') || '0');
-          const newCount = currentCount + 1;
-          localStorage.setItem('portfolio_visitor_count', newCount.toString());
-          setVisitorCount(newCount);
-        }, 3000); // Delay to simulate API call
+        // Check if this session has already been counted
+        if (sessionStorage.getItem('portfolio_visited')) {
+          return; // Already counted this session
+        }
+
+        // Get the last visit day from localStorage
+        const lastVisitDay = localStorage.getItem('portfolio_last_visit_day');
+        const today = new Date().toDateString();
+
+        // Only count as a new visit if it's a new day or first visit
+        if (lastVisitDay !== today) {
+          // Make API call to increment counter
+          const response = await fetch(getApiUrl(), {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          
+          const data = await response.json();
+          setVisitorCount(data.count);
+          
+          // Mark this session as visited and save the day
+          sessionStorage.setItem('portfolio_visited', 'true');
+          localStorage.setItem('portfolio_last_visit_day', today);
+          
+          // Also save to localStorage as a fallback
+          localStorage.setItem('portfolio_visitor_total', data.count.toString());
+        }
       } catch (error) {
-        console.error('Error registering page view:', error);
+        console.error('Error registering visit:', error);
       }
     };
+
+    // First fetch the current count
+    fetchVisitorCount();
     
-    // Only register a page view if this is a new session
-    const lastVisit = sessionStorage.getItem('portfolio_last_visit');
-    if (!lastVisit) {
+    // Then register the new visit after a short delay
+    const timerId = setTimeout(() => {
       registerPageView();
-      sessionStorage.setItem('portfolio_last_visit', new Date().toISOString());
-    }
+    }, 1500);
     
+    return () => clearTimeout(timerId);
   }, []);
 
   return (

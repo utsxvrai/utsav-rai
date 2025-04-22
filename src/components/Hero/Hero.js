@@ -1,13 +1,74 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Hero.css';
-import { FaDownload, FaRss, FaBlog, FaBriefcase } from 'react-icons/fa';
+import { FaDownload, FaRss, FaBlog, FaBriefcase, FaInfoCircle, FaTools, FaCode } from 'react-icons/fa';
 
 const Hero = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
+  const [notificationType, setNotificationType] = useState('info');
+  const [notificationIcon, setNotificationIcon] = useState(null);
   const heroImagePath = "/assets/WhatsApp Image 2025-03-17 at 16.57.16_e3b09e99 (1).jpg";
   const imageRef = useRef(null);
   const particlesRef = useRef(null);
+  const notificationTimeoutRef = useRef(null);
+
+  // Function to show notification
+  const showCustomNotification = (message, type = 'info', icon = <FaInfoCircle />) => {
+    // Clear any existing timeout
+    if (notificationTimeoutRef.current) {
+      clearTimeout(notificationTimeoutRef.current);
+    }
+    
+    setNotificationMessage(message);
+    setNotificationType(type);
+    setNotificationIcon(icon);
+    setShowNotification(true);
+    
+    // Hide notification after 3 seconds
+    notificationTimeoutRef.current = setTimeout(() => {
+      // Add the hide class for exit animation
+      const notification = document.querySelector('.notification');
+      if (notification) {
+        notification.classList.add('hide');
+        
+        // Wait for animation to complete before hiding
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 300);
+      } else {
+        setShowNotification(false);
+      }
+    }, 3000);
+  };
+
+  // Cleanup notification timeout on component unmount
+  useEffect(() => {
+    return () => {
+      if (notificationTimeoutRef.current) {
+        clearTimeout(notificationTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Handle Download CV click
+  const handleDownloadClick = (e) => {
+    e.preventDefault(); // Prevent default download behavior
+    showCustomNotification('CV is currently under revision. Will be available soon!', 'warning', <FaTools />);
+  };
+
+  // Handle Blog click 
+  const handleBlogClick = (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    showCustomNotification('Blog application is currently under development. Stay tuned!', 'info', <FaCode />);
+  };
+
+  // Handle Work Together click
+  const handleWorkTogetherClick = (e) => {
+    showCustomNotification('Scrolling to contact section...', 'success');
+    // Let the default anchor behavior continue
+  };
 
   // Preload the hero image with a forced delay to show loading animation
   useEffect(() => {
@@ -133,6 +194,18 @@ const Hero = () => {
 
   return (
     <section id="hero" className="hero">
+      {/* Notification container */}
+      {showNotification && (
+        <div className="notification-container">
+          <div className={`notification ${notificationType}`}>
+            <div className="notification-content">
+              <span className="notification-icon">{notificationIcon}</span>
+              <p>{notificationMessage}</p>
+            </div>
+          </div>
+        </div>
+      )}
+      
       <div className="container hero-container">
         <div className="hero-content">
           <div className="hero-intro">
@@ -156,17 +229,29 @@ const Hero = () => {
           </div>
           
           <div className="hero-cta">
-            <a href="/assets/cv/UtsavRai82.pdf" className="btn download-btn" download>
+            <a 
+              href="#" 
+              className="btn download-btn" 
+              onClick={handleDownloadClick}
+            >
               <FaDownload className="download-icon" /> Download CV
             </a>
-            <a href="https://utsav-rai-blog.vercel.app" target="_blank" rel="noopener noreferrer" className="btn blog-btn">
+            <a 
+              href="#" 
+              className="btn blog-btn"
+              onClick={handleBlogClick}
+            >
               <FaBlog className="blog-icon" /> Visit My Blog
             </a>
           </div>
           
           {/* Hire Me Button */}
           <div className="hire-me-container">
-            <a href="#contact" className="hire-me-btn">
+            <a 
+              href="#contact" 
+              className="hire-me-btn"
+              onClick={handleWorkTogetherClick}
+            >
               <FaBriefcase className="hire-me-icon" />
               <span>Let's Work Together</span>
             </a>

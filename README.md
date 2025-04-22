@@ -12,6 +12,7 @@ A modern portfolio website built with React, featuring a dark theme with blue ac
 - Download CV button
 - Social media links (GitHub, LinkedIn)
 - Real-time GitHub activity and Twitter integration
+- Persistent visitor counter with MongoDB
 
 ## Technologies Used
 
@@ -78,6 +79,26 @@ A modern portfolio website built with React, featuring a dark theme with blue ac
 7. Make sure your app has the appropriate permissions:
    - Read-only access is sufficient for fetching tweets
    - If you need more functionality, adjust permissions as needed
+
+## MongoDB Visitor Counter Setup
+
+The portfolio includes a visitor counter that uses MongoDB to track visits. For detailed setup instructions, see [MONGODB_SETUP.md](MONGODB_SETUP.md).
+
+Quick setup:
+
+1. Create a MongoDB Atlas account and cluster
+2. Set up database access and network access
+3. Get your connection string
+4. Add the following environment variables:
+
+   ```
+   MONGODB_URI=your_mongodb_connection_string
+   MONGODB_DB=portfolio
+   ```
+
+5. Deploy to Vercel (make sure to add the environment variables in Vercel dashboard)
+
+The visitor counter will increment once per day per unique visitor, ensuring accurate visitor statistics.
 
 ## Customization
 
