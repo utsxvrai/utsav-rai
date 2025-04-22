@@ -21,17 +21,6 @@ const Navbar = () => {
     setShowNotifications(!showNotifications);
   };
 
-  // Throttle scroll events
-  const throttleScroll = (callback) => {
-    if (!ticking) {
-      setTicking(true);
-      window.requestAnimationFrame(() => {
-        callback();
-        setTicking(false);
-      });
-    }
-  };
-
   // Close dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
@@ -49,6 +38,17 @@ const Navbar = () => {
   // Handle scroll events and active section detection
   useEffect(() => {
     let prevScrollY = window.scrollY;
+    
+    // Throttle scroll events - moved inside useEffect
+    const throttleScroll = (callback) => {
+      if (!ticking) {
+        setTicking(true);
+        window.requestAnimationFrame(() => {
+          callback();
+          setTicking(false);
+        });
+      }
+    };
     
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -97,7 +97,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMobileMenuOpen, throttleScroll]);
+  }, [isMobileMenuOpen, ticking]);
 
   // Update useEffect to handle body class for mobile menu
   useEffect(() => {
