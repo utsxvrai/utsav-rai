@@ -27,7 +27,7 @@ const Achievements = () => {
       subtitle: "Multiple Platforms",
       text: "Achieved significant ratings on major competitive programming platforms:",
       stats: [
-        { name: "LeetCode", icon: <SiLeetcode />, value: "Knight 1856", link: "https://leetcode.com/Kalki07/" },
+        { name: "LeetCode", icon: <SiLeetcode />, value: "Knight 1856", link: "https://leetcode.com/u/Kalki21/" },
         { name: "Codeforces", icon: <SiCodeforces />, value: "Pupil 1304", link: "https://codeforces.com/profile/cr7bit" },
         { name: "CodeChef", icon: <SiCodechef />, value: "3★ 1782", link: "https://www.codechef.com/users/cr7bit" },
         { name: "HackerRank", icon: <SiHackerrank />, value: "5★ Algorithm", link: "#" }
