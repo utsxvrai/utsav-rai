@@ -1,10 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import './Projects.css';
 import { FaStar, FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaCode } from 'react-icons/fa';
 
 const Projects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const projectsGridRef = useRef(null);
   const projectsPerPageDesktop = 3;
   const projectsPerPageMobile = 1;
 
@@ -60,20 +59,12 @@ const Projects = () => {
     }
   ];
 
-  const scrollAmount = 340 + 30; // card width + gap
-
   const nextProject = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % projects.length);
-    if (projectsGridRef.current) {
-      projectsGridRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
   };
 
   const prevProject = () => {
     setActiveIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
-    if (projectsGridRef.current) {
-      projectsGridRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    }
   };
 
   const getProjectsToDisplay = () => {
@@ -119,7 +110,7 @@ const Projects = () => {
             </div>
           )}
           <div className="projects-carousel-container">
-            <div className="projects-grid" ref={projectsGridRef}>
+            <div className="projects-grid">
               {getProjectsToDisplay().map((project, idx) => {
                 // Center card is active
                 const isActive = idx === Math.floor(getProjectsToDisplay().length / 2);
@@ -187,4 +178,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default Projects; 

@@ -272,13 +272,6 @@
   .skills-grid {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
-  
-  button, .btn, .icon-btn {
-    font-size: 0.95rem;
-    padding: 8px 16px;
-    min-width: 38px;
-    min-height: 38px;
-  }
 }
 
 @media (max-width: 576px) {
@@ -300,15 +293,6 @@
   
   .skill-item span {
     font-size: 0.8rem;
-  }
-  
-  button, .btn, .icon-btn {
-    font-size: 0.9rem;
-    padding: 6px 10px;
-    min-width: 32px;
-    min-height: 32px;
-    width: 100%;
-    max-width: 100%;
   }
 }
 
@@ -332,4 +316,4 @@
 
 .skills-image-frame:hover .skills-image {
   transform: scale(1.05);
-}
+} 
