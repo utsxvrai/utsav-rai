@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaGithub, FaLinkedin, FaBell, FaTwitter } from 'react-icons/fa';
+import { FaBars, FaTimes, FaLinkedin, FaGithub, FaFileAlt, FaTwitter, FaBell } from 'react-icons/fa';
 import Notification from '../Notification/Notification';
-import VisitorCounter from '../VisitorCounter/VisitorCounter';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -171,7 +170,6 @@ const Navbar = () => {
           </ul>
           
           <div className="mobile-icons">
-            <VisitorCounter />
             <div className="mobile-social-icons">
               <a href="https://github.com/utsavrai" target="_blank" rel="noopener noreferrer">
                 <FaGithub />
@@ -187,9 +185,6 @@ const Navbar = () => {
         </div>
 
         <div className="nav-actions">
-          {/* Visitor Counter */}
-          <VisitorCounter />
-          
           {/* Notification Bell */}
           <div className="notification-wrapper" ref={notificationsRef}>
             <button 

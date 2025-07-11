@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Hero.css';
-import { FaDownload, FaBlog, FaBriefcase, FaInfoCircle, FaTools, FaCode } from 'react-icons/fa';
+import { FaDownload, FaBlog, FaBriefcase, FaInfoCircle, FaTools, FaCode, FaEye } from 'react-icons/fa';
 
 const Hero = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -9,7 +9,7 @@ const Hero = () => {
   const [notificationMessage, setNotificationMessage] = useState('');
   const [notificationType, setNotificationType] = useState('info');
   const [notificationIcon, setNotificationIcon] = useState(null);
-  const heroImagePath = "/assets/WhatsApp Image 2025-03-17 at 16.57.16_e3b09e99 (1).jpg";
+  const heroImagePath = "/assets/mypic.png";
   const imageRef = useRef(null);
   const particlesRef = useRef(null);
   const notificationTimeoutRef = useRef(null);
@@ -231,12 +231,14 @@ const Hero = () => {
           </div>
           
           <div className="hero-cta">
-            <button 
+            <a 
               className="btn download-btn" 
-              onClick={handleDownloadClick}
+              href="https://drive.google.com/file/d/1kzejxsxtqeu1puG3C8PSAnLqN-eyIPCJ/view?usp=drive_link" 
+              target="_blank" 
+              rel="noopener noreferrer"
             >
-              <FaDownload className="download-icon" /> Download CV
-            </button>
+              <FaEye className="download-icon" /> View CV
+            </a>
             <button 
               className="btn blog-btn"
               onClick={handleBlogClick}

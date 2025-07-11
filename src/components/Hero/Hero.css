@@ -73,6 +73,16 @@
   flex-wrap: wrap;
 }
 
+.hero-cta .btn {
+  min-width: 160px;
+  max-width: 200px;
+  flex: 1 1 160px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
 .download-btn {
   display: flex;
   align-items: center;
@@ -182,7 +192,7 @@
 .image-glow {
   position: absolute;
   inset: -2px;
-  background: linear-gradient(135deg, rgba(0, 153, 255, 0.8), rgba(140, 0, 255, 0.4), rgba(0, 255, 200, 0.6));
+  background: linear-gradient(135deg, rgba(10, 1, 89, 0.8), rgba(0, 34, 255, 0.4), rgb(1, 187, 255));
   z-index: -1;
   border-radius: 15px;
   filter: blur(15px);
@@ -651,6 +661,12 @@
     width: 100%;
   }
   
+  .hero-cta .btn {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  
   .download-btn, .blog-btn {
     max-width: 100%;
     width: 100%;
@@ -1017,5 +1033,68 @@
   
   .notification .notification-content p {
     font-size: 0.9rem;
+  }
+}
+
+.view-cv-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  max-width: 48px;
+  height: 48px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  transition: background 0.2s;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-right: 0.5rem;
+}
+
+.view-cv-btn:hover {
+  background: var(--accent-color);
+  color: #fff;
+}
+
+.view-icon {
+  font-size: 1.3rem;
+}
+
+.icon-btn.download-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 1.1rem;
+  box-shadow: none;
+  margin-right: 0.5rem;
+  transition: color 0.2s;
+  padding: 0;
+}
+
+.icon-btn.download-icon-btn:hover {
+  color: var(--accent-color);
+  background: none;
+}
+
+.download-icon {
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 576px) {
+  .view-cv-btn, .icon-btn.download-icon-btn {
+    min-width: 40px;
+    max-width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    margin-right: 0.4rem;
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './About.css';
-import { FaGithub, FaLinkedin, FaCode, FaServer, FaDatabase, FaNodeJs, FaCloud, FaAws } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaCode, FaServer, FaDatabase, FaNodeJs, FaCloud, FaAws, FaFileAlt } from 'react-icons/fa';
 import { SiExpress, SiMongodb, SiPostgresql, SiDocker, SiGraphql, SiRedis, SiNginx, SiJavascript, SiGo, SiSocketdotio, SiRabbitmq, SiMicrosoftazure } from 'react-icons/si';
 
 const About = () => {
@@ -149,6 +149,9 @@ const About = () => {
             </a>
             <a href="https://utsav-rai-blog.vercel.app" target="_blank" rel="noopener noreferrer" className="social-btn">
               <FaCode /> Blog
+            </a>
+            <a href="https://drive.google.com/file/d/1kzejxsxtqeu1puG3C8PSAnLqN-eyIPCJ/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="social-btn">
+              <FaFileAlt /> Resume
             </a>
           </div>
         </div>

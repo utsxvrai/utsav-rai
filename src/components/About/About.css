@@ -428,10 +428,24 @@
 /* Social Links */
 .about-social {
   display: flex;
-  justify-content: center;
-  gap: 1.8rem;
-  margin-top: 2.5rem;
   flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.about-social .social-btn {
+  min-width: 160px;
+  max-width: 200px;
+  flex: 1 1 160px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.about-social .download-btn {
+  /* visually distinguish if needed, or keep same as .social-btn */
 }
 
 .social-btn {
@@ -654,6 +668,17 @@
   .backend-architecture {
     margin-top: 2rem;
     margin-bottom: 2rem;
+  }
+
+  .about-social {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .about-social .social-btn {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
