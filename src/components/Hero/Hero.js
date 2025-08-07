@@ -233,7 +233,7 @@ const Hero = () => {
           <div className="hero-cta">
             <a 
               className="btn download-btn" 
-              href="https://drive.google.com/file/d/1kzejxsxtqeu1puG3C8PSAnLqN-eyIPCJ/view?usp=drive_link" 
+              href="https://drive.google.com/file/d/12X9XfbjlHIm7a9CEg7M5OxRzKxLtLbFp/view?usp=sharing" 
               target="_blank" 
               rel="noopener noreferrer"
             >
