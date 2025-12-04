@@ -40,9 +40,11 @@ function App() {
           <Navbar />
           <Hero />
           <About />
-          <Skills />
           <Projects />
           <Achievements />
+          
+          <Skills />
+          
           <Contact />
           <ScrollToTop />
         </>
@@ -51,4 +53,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
